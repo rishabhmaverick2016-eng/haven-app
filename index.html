@@ -1,0 +1,4063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#F7F9F6">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Haven">
+  <title>Haven — Your Safe Space & Daily Sanctuary</title>
+  
+  <!-- Web Manifest for PWA -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%236A947A'/><path d='M50 25 C35 38 35 62 50 75 C65 62 65 38 50 25 Z' fill='%23F4EFEA'/></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%236A947A'/><path d='M50 25 C35 38 35 62 50 75 C65 62 65 38 50 25 Z' fill='%23F4EFEA'/></svg>">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+/* ==========================================================================
+   Haven Stylesheet - Modern, Responsive, Safe & Calming Design System
+   ========================================================================== */
+
+:root {
+  /* Day Theme: Sage & Warm Oatmeal Sanctuary */
+  --bg-primary: #F8FAF7;
+  --bg-secondary: #FFFFFF;
+  --bg-card: rgba(255, 255, 255, 0.88);
+  --bg-card-subtle: #F1F4EE;
+  --bg-accent: #E8EFE8;
+  
+  --text-main: #24332A;
+  --text-muted: #5E7164;
+  --text-light: #8E9F93;
+  --text-accent: #3E634C;
+
+  --color-primary: #4C7558;
+  --color-primary-hover: #3B5F45;
+  --color-primary-soft: #DDE8DF;
+  --color-gold: #E5A93B;
+  --color-blush: #E89A8D;
+  --color-lavender: #9994C7;
+  --color-sky: #6B9EC7;
+
+  --border-subtle: rgba(76, 117, 88, 0.12);
+  --border-focus: rgba(76, 117, 88, 0.35);
+
+  --shadow-sm: 0 2px 8px rgba(36, 51, 42, 0.04);
+  --shadow-md: 0 8px 24px rgba(36, 51, 42, 0.07);
+  --shadow-glow: 0 0 30px rgba(76, 117, 88, 0.15);
+
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+
+  --font-serif: 'Fraunces', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Night Sanctuary Theme */
+body.theme-night {
+  --bg-primary: #12181E;
+  --bg-secondary: #19212A;
+  --bg-card: rgba(25, 33, 42, 0.92);
+  --bg-card-subtle: #1F2A36;
+  --bg-accent: #263442;
+  
+  --text-main: #EAEFF2;
+  --text-muted: #9BB0BF;
+  --text-light: #647B8C;
+  --text-accent: #86C79A;
+
+  --color-primary: #5BA874;
+  --color-primary-hover: #72BE89;
+  --color-primary-soft: #233A2D;
+  --color-gold: #F2BD54;
+  --color-blush: #F4A597;
+
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-focus: rgba(91, 168, 116, 0.4);
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
+  --shadow-glow: 0 0 35px rgba(91, 168, 116, 0.22);
+}
+
+/* CSS Reset & Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.5;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+/* Container Wrapper */
+.app-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: calc(85px + var(--safe-bottom));
+  position: relative;
+}
+
+/* App Header */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  padding: calc(14px + var(--safe-top)) 20px 14px 20px;
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-icon {
+  font-size: 1.6rem;
+}
+
+.brand-title {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.15;
+}
+
+.brand-subtitle {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Buttons & UI Controls */
+button {
+  font-family: var(--font-sans);
+  cursor: pointer;
+  border: none;
+  background: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pill-btn {
+  background: var(--bg-card-subtle);
+  color: var(--text-main);
+  padding: 7px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 1px solid var(--border-subtle);
+  gap: 6px;
+}
+
+.pill-btn:hover, .pill-btn:active {
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+.pill-btn-small {
+  background: var(--bg-card-subtle);
+  color: var(--text-accent);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 600;
+  border: 1px solid var(--border-subtle);
+}
+
+.pill-btn-secondary {
+  background: transparent;
+  color: var(--text-muted);
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 1px solid var(--border-subtle);
+}
+
+.pill-btn-secondary:hover {
+  background: var(--bg-card-subtle);
+  color: var(--text-main);
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: #FFFFFF;
+  padding: 10px 20px;
+  border-radius: var(--radius-full);
+  font-size: 0.92rem;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(76, 117, 88, 0.25);
+  gap: 8px;
+}
+
+.btn-primary:hover, .btn-primary:active {
+  background: var(--color-primary-hover);
+  transform: scale(0.98);
+}
+
+.icon-circle-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--bg-card-subtle);
+  color: var(--text-main);
+  border: 1px solid var(--border-subtle);
+  font-size: 1rem;
+}
+
+.sound-pill.playing {
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  animation: pulse-soft 2s infinite;
+}
+
+/* Sub-Nav Bar (Mobile Scrollable Pills) */
+.sub-nav {
+  display: flex;
+  gap: 8px;
+  padding: 12px 20px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.sub-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.nav-pill {
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  background: var(--bg-card);
+  color: var(--text-muted);
+  border: 1px solid var(--border-subtle);
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.nav-pill.active {
+  background: var(--color-primary);
+  color: #FFFFFF;
+  border-color: var(--color-primary);
+  box-shadow: 0 2px 8px rgba(76, 117, 88, 0.2);
+}
+
+/* Main Content */
+.main-content {
+  padding: 6px 18px 24px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* HERO: The Unfreeze Card */
+.unfreeze-hero-card {
+  position: relative;
+  background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-subtle) 100%);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.unfreeze-glow {
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle, rgba(106, 148, 122, 0.35) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.unfreeze-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  margin-bottom: 12px;
+}
+
+.pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  animation: pulse-dot-anim 1.6s infinite ease-in-out;
+}
+
+@keyframes pulse-dot-anim {
+  0% { transform: scale(0.9); opacity: 0.7; }
+  50% { transform: scale(1.4); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.7; }
+}
+
+.unfreeze-title {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  color: var(--text-main);
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+
+.unfreeze-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+  margin-bottom: 18px;
+}
+
+.unfreeze-action-btn {
+  width: 100%;
+  padding: 13px 20px;
+  font-size: 0.96rem;
+  animation: gentle-float 4s ease-in-out infinite;
+}
+
+@keyframes gentle-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+/* Card Component */
+.card {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.subtle-card {
+  background: var(--bg-card-subtle);
+  padding: 14px 18px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.section-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-light);
+  display: block;
+  margin-bottom: 3px;
+}
+
+.card-title {
+  font-family: var(--font-serif);
+  font-size: 1.22rem;
+  color: var(--text-main);
+  line-height: 1.25;
+}
+
+.card-subtitle {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-top: 3px;
+}
+
+/* Tab Panes */
+.tab-pane {
+  display: none;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.tab-pane.active {
+  display: flex;
+  animation: fadeIn 0.25s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Battery Selector */
+.badge-battery {
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.battery-low { background: #FDE8E4; color: #D65A4B; }
+.battery-med { background: #FEF3D6; color: #B3821C; }
+.battery-high { background: #E2F3E7; color: #2D8249; }
+
+body.theme-night .battery-low { background: #402320; color: #F89B8F; }
+body.theme-night .battery-med { background: #3E3218; color: #F5CD6D; }
+body.theme-night .battery-high { background: #1B3824; color: #73D193; }
+
+.battery-selector {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.battery-btn {
+  background: var(--bg-card-subtle);
+  border: 2px solid transparent;
+  border-radius: var(--radius-md);
+  padding: 12px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.battery-btn:hover {
+  background: var(--bg-accent);
+}
+
+.battery-btn.active {
+  border-color: var(--color-primary);
+  background: var(--color-primary-soft);
+}
+
+.btn-battery-icon {
+  font-size: 1.4rem;
+}
+
+.btn-battery-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-main);
+  text-align: center;
+}
+
+.btn-battery-pct {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.energy-message-box {
+  background: var(--bg-card-subtle);
+  border-left: 3px solid var(--color-primary);
+  padding: 12px 14px;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.energy-quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.92rem;
+  color: var(--text-main);
+  line-height: 1.45;
+}
+
+/* Checklists */
+.checklist {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--bg-card-subtle);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  transition: all 0.2s ease;
+}
+
+.check-item.completed {
+  opacity: 0.65;
+  background: var(--bg-primary);
+}
+
+.check-item.completed .check-label {
+  text-decoration: line-through;
+  color: var(--text-light);
+}
+
+.checkbox-custom {
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  border: 2px solid var(--text-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.check-item.completed .checkbox-custom {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #FFFFFF;
+}
+
+.check-label {
+  flex: 1;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.check-badge {
+  font-size: 0.7rem;
+  background: var(--bg-secondary);
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  color: var(--text-muted);
+}
+
+/* Brain Dump Section */
+.dump-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+textarea#brainDumpInput {
+  width: 100%;
+  min-height: 120px;
+  padding: 14px;
+  border-radius: var(--radius-md);
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  resize: vertical;
+  outline: none;
+}
+
+textarea#brainDumpInput:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(76, 117, 88, 0.15);
+}
+
+.dump-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.voice-btn.recording {
+  background: #FDE8E4;
+  color: #D65A4B;
+  border-color: #D65A4B;
+  animation: pulse-soft 1.2s infinite;
+}
+
+.quick-prompts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  padding-top: 6px;
+}
+
+.prompts-label {
+  font-size: 0.74rem;
+  color: var(--text-light);
+  font-weight: 600;
+  width: 100%;
+}
+
+.prompt-chip {
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  padding: 5px 10px;
+  border-radius: var(--radius-full);
+  text-align: left;
+}
+
+.prompt-chip:hover {
+  background: var(--bg-accent);
+  color: var(--text-main);
+}
+
+/* Reframe Results */
+.reframe-container {
+  margin-top: 10px;
+  background: var(--bg-card-subtle);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: fadeIn 0.3s ease;
+}
+
+.reframe-trap-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-blush);
+  color: #FFFFFF;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  width: fit-content;
+}
+
+.reframe-box-quote {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  line-height: 1.45;
+  color: var(--text-accent);
+}
+
+.reframe-action-card {
+  background: var(--bg-secondary);
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--color-primary);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.action-card-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.action-card-text {
+  font-size: 0.88rem;
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+/* Optional API Key Row */
+.settings-details summary {
+  cursor: pointer;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+}
+.settings-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.settings-content {
+  padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.small-text {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.key-input-row {
+  display: flex;
+  gap: 8px;
+}
+
+.key-input-row input {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-secondary);
+  color: var(--text-main);
+  font-size: 0.82rem;
+  outline: none;
+}
+
+/* Glow Jar Section */
+.jar-canvas-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: radial-gradient(circle at 50% 60%, var(--bg-card-subtle) 0%, transparent 70%);
+  border-radius: var(--radius-lg);
+  padding: 10px 0;
+}
+
+#glowJarCanvas {
+  max-width: 100%;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+#glowJarCanvas:active {
+  transform: scale(0.97);
+}
+
+.jar-action-hint {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-top: 4px;
+}
+
+.jar-counter {
+  text-align: right;
+}
+
+.counter-num {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-gold);
+  line-height: 1;
+  display: block;
+}
+
+.counter-label {
+  font-size: 0.7rem;
+  color: var(--text-light);
+  text-transform: uppercase;
+}
+
+.quick-win-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.quick-win-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.win-chip {
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  padding: 7px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.win-chip:hover, .win-chip:active {
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+.custom-win-row {
+  display: flex;
+  gap: 8px;
+}
+
+.custom-win-row input {
+  flex: 1;
+  padding: 9px 14px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card-subtle);
+  color: var(--text-main);
+  font-size: 0.85rem;
+  outline: none;
+}
+
+.recent-wins-box {
+  padding-top: 12px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.recent-wins-title {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  color: var(--text-light);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.recent-wins-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.recent-win-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: var(--bg-card-subtle);
+  border-radius: var(--radius-md);
+  font-size: 0.84rem;
+  color: var(--text-main);
+}
+
+.win-time {
+  font-size: 0.7rem;
+  color: var(--text-light);
+}
+
+/* Soundscapes Grid */
+.soundscape-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.sound-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  background: var(--bg-card-subtle);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  transition: all 0.2s ease;
+}
+
+.sound-card.active {
+  border-color: var(--color-primary);
+  background: var(--color-primary-soft);
+}
+
+.sound-icon {
+  font-size: 1.5rem;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sound-info {
+  flex: 1;
+}
+
+.sound-info h4 {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.sound-info p {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+.sound-play-toggle {
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.sound-card.active .sound-play-toggle {
+  background: var(--color-primary);
+  color: #FFFFFF;
+}
+
+.volume-slider-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 4px;
+}
+
+.vol-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+#soundVolumeRange {
+  flex: 1;
+  accent-color: var(--color-primary);
+}
+
+#volValue {
+  font-size: 0.78rem;
+  color: var(--text-light);
+  min-width: 32px;
+}
+
+/* Grounding Sensory 5-4-3-2-1 */
+.grounding-step-box {
+  background: var(--bg-card-subtle);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  text-align: center;
+}
+
+.grounding-number {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px auto;
+}
+
+#groundingTitle {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+#groundingPrompt {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.grounding-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Tab 5: Husband Love & Signal */
+.love-letter-card {
+  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(232, 154, 141, 0.08) 100%);
+  border-color: rgba(232, 154, 141, 0.25);
+}
+
+.love-letter-body {
+  padding: 10px 4px;
+}
+
+#loveNoteText {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--text-main);
+  font-style: italic;
+  margin-bottom: 14px;
+}
+
+.love-signature {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-blush);
+  text-align: right;
+}
+
+.edit-note-form textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card-subtle);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.phone-config-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.phone-config-row label {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+.phone-input-group {
+  display: flex;
+  gap: 8px;
+}
+
+.phone-input-group input {
+  flex: 1;
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card-subtle);
+  color: var(--text-main);
+  font-size: 0.85rem;
+  outline: none;
+}
+
+.signal-buttons-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.signal-btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  background: var(--bg-card-subtle);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  text-align: left;
+}
+
+.signal-btn:hover, .signal-btn:active {
+  background: var(--color-primary-soft);
+  border-color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+.signal-icon {
+  font-size: 1.6rem;
+}
+
+.signal-text strong {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-main);
+  margin-bottom: 2px;
+}
+
+.signal-text span {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+/* Bottom Nav Bar */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-width: 600px;
+  margin: 0 auto;
+  height: calc(64px + var(--safe-bottom));
+  padding-bottom: var(--safe-bottom);
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 50;
+}
+
+.bottom-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  flex: 1;
+  height: 100%;
+  color: var(--text-light);
+}
+
+.bottom-nav-item.active {
+  color: var(--color-primary);
+}
+
+.bottom-nav-item .nav-icon {
+  font-size: 1.25rem;
+}
+
+.bottom-nav-item .nav-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+
+.nav-center-unfreeze {
+  position: relative;
+  top: -12px;
+}
+
+.circle-unfreeze-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  box-shadow: 0 4px 14px rgba(76, 117, 88, 0.38);
+  transition: transform 0.2s ease;
+}
+
+.nav-center-unfreeze:active .circle-unfreeze-btn {
+  transform: scale(0.92);
+}
+
+/* ==========================================================================
+   MODAL: UNFREEZE PROTOCOL STYLES
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 24, 30, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal-card {
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  max-height: 90dvh;
+  overflow-y: auto;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  padding: 24px;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--bg-card-subtle);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.unfreeze-step {
+  display: none;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.unfreeze-step.active {
+  display: flex;
+  animation: fadeIn 0.25s ease;
+}
+
+.step-indicator {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-primary);
+}
+
+.modal-heading {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  color: var(--text-main);
+  line-height: 1.25;
+}
+
+.modal-subheading {
+  font-size: 0.86rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+/* Breathing Visualizer */
+.breathing-modes {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.breath-mode-btn {
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--border-subtle);
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.breath-mode-btn.active {
+  background: var(--color-primary);
+  color: #FFFFFF;
+}
+
+.breath-visualizer-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 220px;
+  position: relative;
+}
+
+.breath-circle-outer {
+  position: absolute;
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  border: 2px dashed var(--color-primary-soft);
+  opacity: 0.8;
+}
+
+.breath-circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--color-primary) 0%, rgba(76, 117, 88, 0.7) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  box-shadow: 0 0 28px rgba(76, 117, 88, 0.4);
+  transition: transform 4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.breath-instruction {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.breath-countdown {
+  font-size: 0.75rem;
+  opacity: 0.9;
+}
+
+/* Permission Card */
+.permission-card {
+  background: var(--bg-card-subtle);
+  border: 2px solid var(--color-primary-soft);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  position: relative;
+}
+
+.permission-stamp {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  padding: 2px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+.permission-text {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: var(--text-main);
+}
+
+.step-nav-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-subtle);
+  gap: 10px;
+}
+
+/* Task Slicer */
+.task-input-box {
+  display: flex;
+  gap: 8px;
+}
+
+.task-input-box input {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card-subtle);
+  color: var(--text-main);
+  font-size: 0.88rem;
+  outline: none;
+}
+
+.popular-slices {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.slice-hint {
+  font-size: 0.74rem;
+  color: var(--text-light);
+  font-weight: 600;
+}
+
+.slice-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.slice-chip {
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  padding: 5px 10px;
+  border-radius: var(--radius-full);
+}
+
+.micro-step-card {
+  background: var(--bg-card-subtle);
+  border: 2px solid var(--color-gold);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: fadeIn 0.3s ease;
+}
+
+.micro-step-badge {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: #B3821C;
+}
+
+body.theme-night .micro-step-badge {
+  color: #F5CD6D;
+}
+
+.micro-step-action {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--text-main);
+  line-height: 1.35;
+}
+
+.micro-step-subtext {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.timer-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  margin-top: 6px;
+}
+
+.timer-display {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+/* Helpers */
+.hidden {
+  display: none !important;
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+
+/* Mobile Install Banner */
+.mobile-install-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: linear-gradient(135deg, var(--bg-card-subtle) 0%, var(--bg-accent) 100%);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 8px 16px;
+  font-size: 0.8rem;
+  animation: fadeIn 0.3s ease;
+}
+.mobile-install-banner.hidden {
+  display: none !important;
+}
+.banner-text {
+  flex: 1;
+  color: var(--text-main);
+}
+.banner-text strong {
+  color: var(--color-primary);
+  display: block;
+}
+.banner-dismiss-btn {
+  background: none;
+  border: none;
+  color: var(--text-light);
+  font-size: 0.9rem;
+  padding: 4px 6px;
+  cursor: pointer;
+}
+.install-pill {
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+
+/* Emotional Mirror Tool */
+.mirror-card {
+  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(153, 148, 199, 0.08) 100%);
+  border-color: rgba(153, 148, 199, 0.25);
+}
+
+.mirror-step-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.mirror-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.emotion-tags-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+@media (min-width: 480px) {
+  .emotion-tags-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.emotion-tag-btn {
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.emotion-tag-btn span {
+  font-size: 1.4rem;
+}
+
+.emotion-tag-btn strong {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-main);
+  line-height: 1.2;
+}
+
+.emotion-tag-btn small {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+.emotion-tag-btn.active {
+  background: var(--color-primary-soft);
+  border-color: var(--color-primary);
+  box-shadow: 0 2px 8px rgba(76, 117, 88, 0.2);
+}
+
+.trigger-source-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.trigger-btn {
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  padding: 7px 12px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.trigger-btn.active {
+  background: var(--color-primary);
+  color: #FFFFFF;
+  border-color: var(--color-primary);
+}
+
+.mirror-inputs-pair {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mirror-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.field-hint {
+  font-size: 0.74rem;
+  color: var(--text-light);
+  font-weight: 600;
+}
+
+.mirror-field input {
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card-subtle);
+  color: var(--text-main);
+  font-size: 0.86rem;
+  outline: none;
+}
+
+.mirror-field input:focus {
+  border-color: var(--color-primary);
+}
+
+/* Mirror Result Card */
+.mirror-result-card {
+  background: var(--bg-secondary);
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: fadeIn 0.3s ease;
+}
+
+.mirror-result-badge {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.mirror-quote {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  color: var(--text-main);
+  line-height: 1.45;
+  font-style: italic;
+}
+
+.agency-choice-box {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.agency-choice-title {
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-light);
+}
+
+.agency-action-btn {
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--border-subtle);
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  text-align: left;
+  font-size: 0.84rem;
+  color: var(--text-main);
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.agency-action-btn:hover, .agency-action-btn:active {
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+</style>
+</head>
+<body class="theme-day">
+  <div class="app-wrapper">
+    <!-- Top Bar -->
+    <header class="app-header">
+      <div class="header-left">
+        <div class="app-brand">
+          <span class="brand-icon">🌿</span>
+          <div>
+            <h1 class="brand-title">Haven</h1>
+            <p class="brand-subtitle">Your Gentle Companion</p>
+          </div>
+        </div>
+      </div>
+      <div class="header-right">
+                <!-- Install App Button -->
+        <button id="installAppBtn" class="pill-btn install-pill" title="Install Haven on your phone">
+          <span class="icon">📲</span>
+          <span>Install</span>
+        </button>
+        <!-- Ambient Sound Floating Toggle -->
+        <button id="quickSoundBtn" class="pill-btn sound-pill" title="Toggle Calming Sound">
+          <span class="icon">🎧</span>
+          <span id="soundPillText">Sound</span>
+        </button>
+        <!-- Dark/Light Mode -->
+        <button id="themeToggleBtn" class="icon-circle-btn" title="Toggle Night Sanctuary">
+          <span id="themeIcon">🌙</span>
+        </button>
+      </div>
+    </header>
+    <!-- Mobile Install Guidance Banner (Auto-detects iPhone or Android) -->
+    <div id="mobileInstallBanner" class="mobile-install-banner">
+      <div class="banner-text">
+        <strong>📲 Add to Phone Home Screen:</strong>
+        <span id="installInstructionText">Tap for quick 2-step setup</span>
+      </div>
+      <button id="bannerActionBtn" class="pill-btn-small">How to Install</button>
+      <button id="dismissBannerBtn" class="banner-dismiss-btn" title="Dismiss">✕</button>
+    </div>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+
+      <!-- HERO: The Emergency "Unfreeze Me" Card -->
+      <section class="unfreeze-hero-card">
+        <div class="unfreeze-glow"></div>
+        <div class="unfreeze-content">
+          <div class="unfreeze-badge">
+            <span class="pulse-dot"></span> In Paralysis or Overwhelm?
+          </div>
+          <h2 class="unfreeze-title">Take a breath. You are safe.</h2>
+          <p class="unfreeze-desc">When thoughts race or getting started feels impossible, let Haven walk you through in 60 seconds.</p>
+          <button id="openUnfreezeModalBtn" class="btn-primary unfreeze-action-btn">
+            <span>✨ Unfreeze Me (1-Minute Reset)</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- TAB NAVIGATION FOR MOBILE (Scrollable or Tabbed) -->
+      <nav class="sub-nav">
+        <button class="nav-pill active" data-tab="tab-flow">
+          <span>🔋 Daily Flow</span>
+        </button>
+        <button class="nav-pill" data-tab="tab-mind">
+          <span>💭 Brain Dump</span>
+        </button>
+        <button class="nav-pill" data-tab="tab-wins">
+          <span>✨ Glow Jar</span>
+        </button>
+        <button class="nav-pill" data-tab="tab-calm">
+          <span>🌊 Soundscapes</span>
+        </button>
+        <button class="nav-pill" data-tab="tab-love">
+          <span>❤️ For You</span>
+        </button>
+      </nav>
+
+      <!-- ============================================== -->
+      <!-- TAB 1: DAILY FLOW & ENERGY-ADAPTIVE ROUTINE -->
+      <!-- ============================================== -->
+      <section id="tab-flow" class="tab-pane active">
+        <div class="card energy-card">
+          <div class="card-header">
+            <div>
+              <span class="section-badge">How is your internal battery?</span>
+              <h3 class="card-title">Meet yourself where you are</h3>
+            </div>
+            <span id="batteryStatusTag" class="badge-battery battery-med">Steady 50%</span>
+          </div>
+
+          <div class="battery-selector">
+            <button class="battery-btn" data-level="low">
+              <span class="btn-battery-icon">🪫</span>
+              <span class="btn-battery-title">Gentle Survival</span>
+              <span class="btn-battery-pct">15% Energy</span>
+            </button>
+            <button class="battery-btn active" data-level="med">
+              <span class="btn-battery-icon">🔋</span>
+              <span class="btn-battery-title">Steady Balance</span>
+              <span class="btn-battery-pct">50% Energy</span>
+            </button>
+            <button class="battery-btn" data-level="high">
+              <span class="btn-battery-icon">⚡</span>
+              <span class="btn-battery-title">Inspired Energy</span>
+              <span class="btn-battery-pct">85% Energy</span>
+            </button>
+          </div>
+
+          <!-- Dynamic Guidance Message -->
+          <div id="energyMessage" class="energy-message-box">
+            <p class="energy-quote">"Today is a steady day. Pick one single meaningful priority, let everything else be soft, and protect your evening peace."</p>
+          </div>
+        </div>
+
+        <!-- Adaptive Daily Intentions -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title">Today's Gentle Intentions</h3>
+              <p class="card-subtitle">Zero guilt. Check off what feels good, leave the rest.</p>
+            </div>
+            <button id="addCustomTaskBtn" class="pill-btn-small">+ Add</button>
+          </div>
+
+          <ul id="intentionsList" class="checklist">
+            <!-- Populated via JavaScript dynamically based on battery level -->
+          </ul>
+        </div>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- TAB 2: BRAIN DUMP & CBT REFRAMER -->
+      <!-- ============================================== -->
+      <section id="tab-mind" class="tab-pane">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <span class="section-badge">Cognitive Sanctuary</span>
+              <h3 class="card-title">Unpack Your Racing Thoughts</h3>
+              <p class="card-subtitle">Say or write everything on your mind. Haven will gently separate fear from reality.</p>
+            </div>
+          </div>
+
+          <div class="dump-input-wrapper">
+            <textarea id="brainDumpInput" placeholder="I feel like I'm falling behind and there's too much to do, and I haven't done enough today..."></textarea>
+            
+            <div class="dump-controls">
+              <button id="micVoiceBtn" class="pill-btn voice-btn" title="Speak your thoughts">
+                <span>🎙️</span> <span id="micLabel">Speak</span>
+              </button>
+              <button id="clearDumpBtn" class="pill-btn-secondary">Clear</button>
+              <button id="reframingBtn" class="btn-primary">
+                <span>🪄 Unpack & Reframe</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Quick Starter Prompts -->
+          <div class="quick-prompts">
+            <span class="prompts-label">Quick tap:</span>
+            <button class="prompt-chip" data-text="I'm feeling so guilty because I spent the last few hours frozen on my phone and did nothing productive.">Frozen on phone & feeling guilty</button>
+            <button class="prompt-chip" data-text="There are so many tasks piling up at work/home that my mind is completely blank and shut down.">Tasks piling up & paralyzed</button>
+            <button class="prompt-chip" data-text="I feel like I'm putting everyone else first and I have zero energy left for myself.">Putting everyone first & empty</button>
+            <button class="prompt-chip" data-text="I feel like I'm failing at being consistent and I'll never get on top of things.">Feeling like I'm failing</button>
+          </div>
+
+          <!-- Reframe Output Container -->
+          <div id="reframeOutput" class="reframe-container hidden">
+            <!-- Injected via JavaScript with warm CBT breakdown -->
+          </div>
+        </div>
+
+        
+        <!-- ============================================== -->
+        <!-- TOOL: THE EMOTIONAL MIRROR (WHO HURT YOU & RECLAIM POWER) -->
+        <!-- ============================================== -->
+        <div class="card mirror-card">
+          <div class="card-header">
+            <div>
+              <span class="section-badge">Agency & Clarity</span>
+              <h3 class="card-title">🪞 The Emotional Mirror</h3>
+              <p class="card-subtitle">Name the hurt, trace who triggered it, and take your power back.</p>
+            </div>
+          </div>
+
+          <!-- Step 1: Label Emotion -->
+          <div class="mirror-step-box">
+            <label class="mirror-label">Step 1: What is the exact feeling in your chest?</label>
+            <div class="emotion-tags-grid">
+              <button class="emotion-tag-btn" data-emotion="Anger" data-signal="A boundary was crossed or an expectation was broken.">
+                <span>😡</span>
+                <div>
+                  <strong>Anger</strong>
+                  <small>Boundary crossed</small>
+                </div>
+              </button>
+
+              <button class="emotion-tag-btn" data-emotion="Resentment" data-signal="You gave more than you wanted to, and felt taken for granted.">
+                <span>💔</span>
+                <div>
+                  <strong>Resentment</strong>
+                  <small>Over-giving / unappreciated</small>
+                </div>
+              </button>
+
+              <button class="emotion-tag-btn" data-emotion="Guilt" data-signal="You are measuring yourself against an unrealistic expectation.">
+                <span>😔</span>
+                <div>
+                  <strong>Guilt / Shame</strong>
+                  <small>Harsh self-standard</small>
+                </div>
+              </button>
+
+              <button class="emotion-tag-btn" data-emotion="Invisible" data-signal="You are waiting for someone to notice your effort without asking.">
+                <span>🥀</span>
+                <div>
+                  <strong>Invisible</strong>
+                  <small>Unspoken desire for care</small>
+                </div>
+              </button>
+
+              <button class="emotion-tag-btn" data-emotion="Overwhelmed" data-signal="Too many demands and not enough emotional safety.">
+                <span>🌫️</span>
+                <div>
+                  <strong>Overwhelmed</strong>
+                  <small>System in shutdown</small>
+                </div>
+              </button>
+
+              <button class="emotion-tag-btn" data-emotion="Anxious" data-signal="Your mind is trying to anticipate and prevent pain.">
+                <span>😟</span>
+                <div>
+                  <strong>Anxious</strong>
+                  <small>Hyper-vigilance</small>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 2: Trigger Source -->
+          <div class="mirror-step-box">
+            <label class="mirror-label">Step 2: Who sparked or triggered this feeling?</label>
+            <div class="trigger-source-grid">
+              <button class="trigger-btn" data-source="Partner / Husband">👤 Partner / Husband</button>
+              <button class="trigger-btn" data-source="Work / Boss / Client">💼 Work / Boss</button>
+              <button class="trigger-btn" data-source="Family / In-Laws">👨‍👩‍👧 Family / In-Laws</button>
+              <button class="trigger-btn" data-source="Social Circle / Friend">👥 Friend / Others</button>
+              <button class="trigger-btn" data-source="My Own Mind">🧠 My Inner Critic</button>
+            </div>
+          </div>
+
+          <!-- Step 3: Factual Event vs Silent Expectation -->
+          <div class="mirror-step-box">
+            <label class="mirror-label">Step 3: What happened vs. What story did your mind tell?</label>
+            <div class="mirror-inputs-pair">
+              <div class="mirror-field">
+                <span class="field-hint">1. What did they actually say or do? (The bare fact):</span>
+                <input type="text" id="mirrorFactInput" placeholder="e.g. He left without asking, or boss sent email late...">
+              </div>
+              <div class="mirror-field">
+                <span class="field-hint">2. What silent expectation or story was I holding?:</span>
+                <input type="text" id="mirrorStoryInput" placeholder="e.g. I expected them to know I was tired, or I thought they think I'm failing...">
+              </div>
+            </div>
+
+            <button id="unveilMirrorBtn" class="btn-primary" style="width: 100%; margin-top: 10px;">
+              <span>🪞 Reveal The Truth & Reclaim My Power</span>
+            </button>
+          </div>
+
+          <!-- The Result / Agency Card -->
+          <div id="mirrorResultCard" class="mirror-result-card hidden">
+            <!-- Dynamically populated via JS -->
+          </div>
+        </div>
+
+        <!-- Optional Gemini AI Key Settings (100% Free Option) -->
+        <div class="card subtle-card">
+          <details class="settings-details">
+            <summary class="settings-summary">
+              <span>🤖 Free Google Gemini AI Companion (Optional)</span>
+              <span class="caret">▾</span>
+            </summary>
+            <div class="settings-content">
+              <p class="small-text">Haven works 100% offline with its built-in psychology reframing algorithms. If you'd also like an open-ended conversational AI listener (like Liven's 'Livie'), you can paste a 100% free Google Gemini API key below.</p>
+              <div class="key-input-row">
+                <input type="password" id="geminiApiKey" placeholder="AIzaSy... (free key from aistudio.google.com)">
+                <button id="saveKeyBtn" class="pill-btn">Save</button>
+              </div>
+              <p id="keyStatus" class="status-text"></p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- TAB 3: THE GLOW JAR (MICRO-WINS BANK) -->
+      <!-- ============================================== -->
+      <section id="tab-wins" class="tab-pane">
+        <div class="card jar-card">
+          <div class="card-header">
+            <div>
+              <span class="section-badge">Dopamine Without Burnout</span>
+              <h3 class="card-title">The Glow Jar</h3>
+              <p class="card-subtitle">Every tiny act of showing up is proof that you are moving forward.</p>
+            </div>
+            <div class="jar-counter">
+              <span id="winCountNumber" class="counter-num">0</span>
+              <span class="counter-label">Wins</span>
+            </div>
+          </div>
+
+          <!-- Visual Animated Jar Canvas -->
+          <div class="jar-canvas-wrapper">
+            <canvas id="glowJarCanvas" width="320" height="340"></canvas>
+            <button id="shakeJarBtn" class="jar-action-hint">✨ Tap jar to shimmer</button>
+          </div>
+
+          <!-- Quick Win Buttons -->
+          <div class="quick-win-section">
+            <p class="quick-win-title">Tap to deposit a tiny win:</p>
+            <div class="quick-win-chips">
+              <button class="win-chip" data-win="Drank a full glass of water 💧">💧 Drank water</button>
+              <button class="win-chip" data-win="Got out of bed and dressed 🌅">🌅 Got dressed</button>
+              <button class="win-chip" data-win="Ate a nourishing meal 🥗">🥗 Nourished body</button>
+              <button class="win-chip" data-win="Stepped outside / fresh air 🍃">🍃 Fresh air</button>
+              <button class="win-chip" data-win="Allowed myself to rest guilt-free 🛋️">🛋️ Rested without guilt</button>
+              <button class="win-chip" data-win="Did one 2-minute chore 🧹">🧹 2-minute chore</button>
+              <button class="win-chip" data-win="Took a deep conscious breath 🧘">🧘 Took deep breaths</button>
+              <button class="win-chip" data-win="Said no without over-explaining 🛡️">🛡️ Set a boundary</button>
+            </div>
+
+            <!-- Custom Win Input -->
+            <div class="custom-win-row">
+              <input type="text" id="customWinInput" placeholder="Add your own win (e.g. Replied to that text)...">
+              <button id="addCustomWinBtn" class="pill-btn">+ Add Win</button>
+            </div>
+          </div>
+
+          <!-- Recent Wins Feed -->
+          <div class="recent-wins-box">
+            <h4 class="recent-wins-title">Recent Moments of Light</h4>
+            <ul id="recentWinsList" class="recent-wins-list">
+              <!-- Populated via JS -->
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- TAB 4: SOUNDSCAPES & SOMATIC RESETS -->
+      <!-- ============================================== -->
+      <section id="tab-calm" class="tab-pane">
+        <!-- Sound Generator -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <span class="section-badge">Nervous System Calming</span>
+              <h3 class="card-title">Procedural Soundscapes</h3>
+              <p class="card-subtitle">Zero buffering, runs natively in your browser to soothe ADHD & racing thoughts.</p>
+            </div>
+          </div>
+
+          <div class="soundscape-grid">
+            <div class="sound-card" data-sound="brown">
+              <div class="sound-icon">🟤</div>
+              <div class="sound-info">
+                <h4>Brown Noise</h4>
+                <p>Silences mental noise & overstimulation</p>
+              </div>
+              <button class="sound-play-toggle">Play</button>
+            </div>
+
+            <div class="sound-card" data-sound="rain">
+              <div class="sound-icon">🌧️</div>
+              <div class="sound-info">
+                <h4>Gentle Rain</h4>
+                <p>Soft rainfall on window</p>
+              </div>
+              <button class="sound-play-toggle">Play</button>
+            </div>
+
+            <div class="sound-card" data-sound="waves">
+              <div class="sound-icon">🌊</div>
+              <div class="sound-info">
+                <h4>Ocean Waves</h4>
+                <p>Rhythmic, grounding tide</p>
+              </div>
+              <button class="sound-play-toggle">Play</button>
+            </div>
+
+            <div class="sound-card" data-sound="fire">
+              <div class="sound-icon">🔥</div>
+              <div class="sound-info">
+                <h4>Cozy Fireplace</h4>
+                <p>Warm gentle crackles</p>
+              </div>
+              <button class="sound-play-toggle">Play</button>
+            </div>
+
+            <div class="sound-card" data-sound="calm432">
+              <div class="sound-icon">✨</div>
+              <div class="sound-info">
+                <h4>432 Hz Calm Tone</h4>
+                <p>Heart-rate settling harmonic drone</p>
+              </div>
+              <button class="sound-play-toggle">Play</button>
+            </div>
+          </div>
+
+          <!-- Volume slider -->
+          <div class="volume-slider-box">
+            <span class="vol-label">Volume:</span>
+            <input type="range" id="soundVolumeRange" min="0" max="100" value="50">
+            <span id="volValue">50%</span>
+          </div>
+        </div>
+
+        <!-- 5-4-3-2-1 Somatic Grounding Tool -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <span class="section-badge">Physical Reset</span>
+              <h3 class="card-title">5-4-3-2-1 Sensory Anchor</h3>
+              <p class="card-subtitle">Pulls your mind out of spiraling and back into your physical senses.</p>
+            </div>
+          </div>
+
+          <div id="groundingContainer" class="grounding-step-box">
+            <!-- Step by step interactive walkthrough -->
+            <div class="grounding-content">
+              <div class="grounding-number">5</div>
+              <h4 id="groundingTitle">Look around: Spot 5 things you can see</h4>
+              <p id="groundingPrompt">Notice their colors, shapes, or how light hits them. Take your time.</p>
+              <div class="grounding-actions">
+                <button id="groundingNextBtn" class="pill-btn">Next Sense ➔</button>
+                <button id="groundingResetBtn" class="pill-btn-secondary">Start Over</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- TAB 5: FROM YOUR PERSON (HUSBAND'S LOVE & SIGNAL) -->
+      <!-- ============================================== -->
+      <section id="tab-love" class="tab-pane">
+        <!-- Pinned Love Letter -->
+        <div class="card love-letter-card">
+          <div class="card-header">
+            <div>
+              <span class="section-badge">Your Anchor</span>
+              <h3 class="card-title">A Reminder From Me ❤️</h3>
+            </div>
+            <button id="editLoveNoteBtn" class="pill-btn-small">Edit Note</button>
+          </div>
+
+          <div class="love-letter-body">
+            <p id="loveNoteText">"You are doing so much better than your tired mind is telling you right now. I don't love you for how productive you are or how much you check off. I love you for who you are. Take all the time you need, breathe deep, and let me hold things down for you today."</p>
+            <div class="love-signature">— Always here for you ❤️</div>
+          </div>
+
+          <!-- Hidden edit note form -->
+          <div id="editLoveNoteForm" class="edit-note-form hidden">
+            <textarea id="loveNoteInput" rows="4" placeholder="Write your personalized love message to your wife..."></textarea>
+            <div class="form-actions">
+              <button id="saveLoveNoteBtn" class="btn-primary">Save Note</button>
+              <button id="cancelLoveNoteBtn" class="pill-btn-secondary">Cancel</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Husband's Quick Signal Hub (WhatsApp 1-Tap) -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <span class="section-badge">No Words Needed</span>
+              <h3 class="card-title">The 'Bat-Signal' to Your Husband</h3>
+              <p class="card-subtitle">When you're too exhausted to explain, tap one to send a message directly to his WhatsApp.</p>
+            </div>
+          </div>
+
+          <div class="phone-config-row">
+            <label for="husbandPhoneInput">Husband's WhatsApp Number (with country code):</label>
+            <div class="phone-input-group">
+              <input type="tel" id="husbandPhoneInput" placeholder="e.g. +91 9876543210 or 9876543210">
+              <button id="savePhoneBtn" class="pill-btn">Save</button>
+            </div>
+          </div>
+
+          <div class="signal-buttons-grid">
+            <button class="signal-btn" data-msg="Hey love, my battery is at 10% today. Could really use a warm hug with no questions asked when you have a moment ❤️">
+              <span class="signal-icon">🫂</span>
+              <div class="signal-text">
+                <strong>Need a gentle hug</strong>
+                <span>No words or questions, just warmth</span>
+              </div>
+            </button>
+
+            <button class="signal-btn" data-msg="Hey love, feeling a bit parched/hungry and frozen. Could you please bring me a glass of water or warm tea? ☕">
+              <span class="signal-icon">☕</span>
+              <div class="signal-text">
+                <strong>Bring water or warm drink</strong>
+                <span>Hydration & comfort drop</span>
+              </div>
+            </button>
+
+            <button class="signal-btn" data-msg="Hey! My brain is in task paralysis right now. Just wanted to let you know so you know why I'm quiet. Love you! 🔋">
+              <span class="signal-icon">🧠</span>
+              <div class="signal-text">
+                <strong>In task paralysis</strong>
+                <span>Just letting you know I need low sensory time</span>
+              </div>
+            </button>
+
+            <button class="signal-btn" data-msg="Hey sweetheart, taking a guilt-free rest break right now! Proud of myself for resting ❤️">
+              <span class="signal-icon">✨</span>
+              <div class="signal-text">
+                <strong>Taking a guilt-free rest</strong>
+                <span>Sharing a tiny win of resting</span>
+              </div>
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Bottom Navigation Bar (Optimized for Mobile Thumb Zone) -->
+    <footer class="bottom-nav">
+      <button class="bottom-nav-item active" data-tab="tab-flow">
+        <span class="nav-icon">🔋</span>
+        <span class="nav-label">Flow</span>
+      </button>
+      <button class="bottom-nav-item" data-tab="tab-mind">
+        <span class="nav-icon">💭</span>
+        <span class="nav-label">Brain</span>
+      </button>
+      <button class="bottom-nav-item nav-center-unfreeze" id="bottomUnfreezeBtn">
+        <div class="circle-unfreeze-btn">
+          <span>✨</span>
+        </div>
+        <span class="nav-label">Unfreeze</span>
+      </button>
+      <button class="bottom-nav-item" data-tab="tab-wins">
+        <span class="nav-icon">🌟</span>
+        <span class="nav-label">Glow Jar</span>
+      </button>
+      <button class="bottom-nav-item" data-tab="tab-love">
+        <span class="nav-icon">❤️</span>
+        <span class="nav-label">For You</span>
+      </button>
+    </footer>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: THE FULL UNFREEZE & ANTI-PARALYSIS PROTOCOL -->
+  <!-- ============================================== -->
+  <div id="unfreezeModal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <button id="closeUnfreezeModal" class="modal-close-btn" title="Close">✕</button>
+
+      <!-- Step 1: Somatic Breathing Reset -->
+      <div id="unfreezeStep1" class="unfreeze-step active">
+        <div class="step-indicator">Step 1 of 3: Regulate Your Nervous System</div>
+        <h3 class="modal-heading">First, let your nervous system catch up</h3>
+        <p class="modal-subheading">Your brain cannot plan or act while your body feels in danger. Follow the circle for 4 breaths.</p>
+
+        <!-- Breathing Selector -->
+        <div class="breathing-modes">
+          <button class="breath-mode-btn active" data-mode="sigh">Physiological Sigh (Fastest)</button>
+          <button class="breath-mode-btn" data-mode="box">Box (4-4-4-4)</button>
+          <button class="breath-mode-btn" data-mode="calm">4-7-8 Deep Calm</button>
+        </div>
+
+        <!-- Breathing Circle Visualizer -->
+        <div class="breath-visualizer-container">
+          <div class="breath-circle-outer"></div>
+          <div id="breathCircle" class="breath-circle">
+            <span id="breathText" class="breath-instruction">Inhale</span>
+            <span id="breathTimer" class="breath-countdown">4s</span>
+          </div>
+        </div>
+
+        <div class="step-nav-footer">
+          <button id="skipToStep2Btn" class="pill-btn-secondary">Skip to Step 2</button>
+          <button id="goToStep2Btn" class="btn-primary">I'm Feeling Grounded ➔</button>
+        </div>
+      </div>
+
+      <!-- Step 2: Permission Slip & Reality Check -->
+      <div id="unfreezeStep2" class="unfreeze-step">
+        <div class="step-indicator">Step 2 of 3: Release the False Guilt</div>
+        <h3 class="modal-heading">Your Official Permission Slip</h3>
+        
+        <div class="permission-card">
+          <div class="permission-stamp">VERIFIED TRUTH</div>
+          <p class="permission-text">
+            "You are not lazy, unmotivated, or falling behind. You are experiencing <strong>executive freeze</strong> because your nervous system is flooded.<br><br>
+            You do <strong>not</strong> need to fix your whole life today. You do <strong>not</strong> need to finish the whole project. You only need to do <strong>one absurdly tiny thing</strong>."
+          </p>
+        </div>
+
+        <div class="step-nav-footer">
+          <button id="backToStep1Btn" class="pill-btn-secondary">⬅ Back</button>
+          <button id="goToStep3Btn" class="btn-primary">Slice My Task ➔</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Absurdly Tiny Task Slicer & 2-Minute Timer -->
+      <div id="unfreezeStep3" class="unfreeze-step">
+        <div class="step-indicator">Step 3 of 3: The 2-Minute Slicer</div>
+        <h3 class="modal-heading">What is the scary task paralyzing you?</h3>
+        
+        <div class="task-input-box">
+          <input type="text" id="paralysisTaskInput" placeholder="e.g., Clean the kitchen, write email, start report...">
+          <button id="sliceTaskBtn" class="btn-primary">Dismantle It 🪄</button>
+        </div>
+
+        <div class="popular-slices">
+          <span class="slice-hint">Or pick one to dismantle:</span>
+          <div class="slice-chips">
+            <button class="slice-chip" data-task="Clean the room / chores">Chores / Messy Room</button>
+            <button class="slice-chip" data-task="Answer work emails or messages">Replying to messages</button>
+            <button class="slice-chip" data-task="Start working on a big project">Big project / work</button>
+            <button class="slice-chip" data-task="Get up and get ready">Getting out of bed</button>
+          </div>
+        </div>
+
+        <!-- The Micro Step Card -->
+        <div id="microStepCard" class="micro-step-card hidden">
+          <div class="micro-step-badge">YOUR ABSURDLY TINY 2-MINUTE MISSION</div>
+          <h4 id="microStepText" class="micro-step-action">Step 1: Just touch the kitchen counter with a damp towel. Do not clean everything.</h4>
+          <p class="micro-step-subtext">You have full permission to STOP after 2 minutes. No guilt.</p>
+
+          <!-- 2 Minute Countdown -->
+          <div class="timer-box">
+            <div id="twoMinTimerDisplay" class="timer-display">02:00</div>
+            <div class="timer-buttons">
+              <button id="startTwoMinTimerBtn" class="pill-btn">▶ Start 2-Minute Timer</button>
+              <button id="completeMicroStepBtn" class="btn-primary hidden">✨ I Did It! (Add to Wins)</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-nav-footer">
+          <button id="backToStep2Btn" class="pill-btn-secondary">⬅ Back</button>
+          <button id="finishUnfreezeBtn" class="pill-btn-secondary">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Audio Engine & App Logic -->
+  <script>
+/**
+ * Audio Engine for Haven
+ * Uses Web Audio API to procedurally generate soothing soundscapes,
+ * breathing bells, and sparkle chimes with zero external audio assets.
+ */
+
+class SoundEngine {
+  constructor() {
+    this.ctx = null;
+    this.isPlaying = false;
+    this.currentTrack = null;
+    this.ambientGain = null;
+    this.nodes = [];
+    this.masterGain = null;
+    this.volume = 0.5;
+  }
+
+  init() {
+    if (!this.ctx) {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      this.ctx = new AudioContext();
+      this.masterGain = this.ctx.createGain();
+      this.masterGain.gain.setValueAtTime(this.volume, this.ctx.currentTime);
+      this.masterGain.connect(this.ctx.destination);
+    }
+    if (this.ctx.state === 'suspended') {
+      this.ctx.resume();
+    }
+  }
+
+  setVolume(val) {
+    this.volume = Math.max(0, Math.min(1, val));
+    if (this.masterGain && this.ctx) {
+      this.masterGain.gain.setTargetAtTime(this.volume, this.ctx.currentTime, 0.05);
+    }
+  }
+
+  stopAmbient() {
+    this.nodes.forEach(node => {
+      try {
+        if (node.stop) node.stop();
+        if (node.disconnect) node.disconnect();
+      } catch (e) {}
+    });
+    this.nodes = [];
+    this.isPlaying = false;
+    this.currentTrack = null;
+  }
+
+  playAmbient(type) {
+    this.init();
+    if (this.currentTrack === type && this.isPlaying) {
+      this.stopAmbient();
+      return false;
+    }
+
+    this.stopAmbient();
+    this.currentTrack = type;
+    this.isPlaying = true;
+
+    switch (type) {
+      case 'brown':
+        this.createBrownNoise();
+        break;
+      case 'rain':
+        this.createRainSound();
+        break;
+      case 'waves':
+        this.createOceanWaves();
+        break;
+      case 'fire':
+        this.createFireplace();
+        break;
+      case 'calm432':
+        this.create432HzTone();
+        break;
+    }
+    return true;
+  }
+
+  // Brown noise (deep soothing low rumble, gold standard for ADHD & calming racing thoughts)
+  createBrownNoise() {
+    const bufferSize = 2 * this.ctx.sampleRate;
+    const noiseBuffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+    const output = noiseBuffer.getChannelData(0);
+    let lastOut = 0.0;
+
+    for (let i = 0; i < bufferSize; i++) {
+      const white = Math.random() * 2 - 1;
+      output[i] = (lastOut + (0.02 * white)) / 1.02;
+      lastOut = output[i];
+      output[i] *= 3.5; // Compensate gain
+    }
+
+    const whiteNoise = this.ctx.createBufferSource();
+    whiteNoise.buffer = noiseBuffer;
+    whiteNoise.loop = true;
+
+    const filter = this.ctx.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.setValueAtTime(450, this.ctx.currentTime);
+
+    const gain = this.ctx.createGain();
+    gain.gain.setValueAtTime(0.4, this.ctx.currentTime);
+
+    whiteNoise.connect(filter);
+    filter.connect(gain);
+    gain.connect(this.masterGain);
+
+    whiteNoise.start();
+    this.nodes.push(whiteNoise, filter, gain);
+  }
+
+  // Gentle soft rain
+  createRainSound() {
+    const bufferSize = 2 * this.ctx.sampleRate;
+    const noiseBuffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+    const output = noiseBuffer.getChannelData(0);
+    let b0 = 0, b1 = 0, b2 = 0;
+
+    for (let i = 0; i < bufferSize; i++) {
+      const white = Math.random() * 2 - 1;
+      b0 = 0.99886 * b0 + white * 0.0555179;
+      b1 = 0.99332 * b1 + white * 0.0750759;
+      b2 = 0.96900 * b2 + white * 0.1538520;
+      output[i] = (b0 + b1 + b2) * 0.15;
+    }
+
+    const noise = this.ctx.createBufferSource();
+    noise.buffer = noiseBuffer;
+    noise.loop = true;
+
+    const filter = this.ctx.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.setValueAtTime(1200, this.ctx.currentTime);
+
+    const gain = this.ctx.createGain();
+    gain.gain.setValueAtTime(0.35, this.ctx.currentTime);
+
+    noise.connect(filter);
+    filter.connect(gain);
+    gain.connect(this.masterGain);
+
+    noise.start();
+    this.nodes.push(noise, filter, gain);
+  }
+
+  // Gentle rhythmic ocean waves
+  createOceanWaves() {
+    const bufferSize = 3 * this.ctx.sampleRate;
+    const noiseBuffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+    const output = noiseBuffer.getChannelData(0);
+    let lastOut = 0.0;
+
+    for (let i = 0; i < bufferSize; i++) {
+      const white = Math.random() * 2 - 1;
+      output[i] = (lastOut + (0.025 * white)) / 1.025;
+      lastOut = output[i];
+      output[i] *= 3.0;
+    }
+
+    const noise = this.ctx.createBufferSource();
+    noise.buffer = noiseBuffer;
+    noise.loop = true;
+
+    // Filter that modulates slowly to simulate wave surges
+    const filter = this.ctx.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.setValueAtTime(250, this.ctx.currentTime);
+
+    const lfo = this.ctx.createOscillator();
+    lfo.frequency.setValueAtTime(0.12, this.ctx.currentTime); // 8-second wave cycle
+    const lfoGain = this.ctx.createGain();
+    lfoGain.gain.setValueAtTime(280, this.ctx.currentTime);
+
+    lfo.connect(lfoGain);
+    lfoGain.connect(filter.frequency);
+
+    const gain = this.ctx.createGain();
+    gain.gain.setValueAtTime(0.4, this.ctx.currentTime);
+
+    noise.connect(filter);
+    filter.connect(gain);
+    gain.connect(this.masterGain);
+
+    noise.start();
+    lfo.start();
+    this.nodes.push(noise, filter, lfo, lfoGain, gain);
+  }
+
+  // Cozy crackling fireplace
+  createFireplace() {
+    // Low rumble
+    const bufferSize = 2 * this.ctx.sampleRate;
+    const noiseBuffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+    const output = noiseBuffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      output[i] = (Math.random() * 2 - 1) * 0.2;
+    }
+    const noise = this.ctx.createBufferSource();
+    noise.buffer = noiseBuffer;
+    noise.loop = true;
+
+    const filter = this.ctx.createBiquadFilter();
+    filter.type = 'bandpass';
+    filter.frequency.setValueAtTime(320, this.ctx.currentTime);
+    filter.Q.setValueAtTime(2.0, this.ctx.currentTime);
+
+    const gain = this.ctx.createGain();
+    gain.gain.setValueAtTime(0.3, this.ctx.currentTime);
+
+    noise.connect(filter);
+    filter.connect(gain);
+    gain.connect(this.masterGain);
+    noise.start();
+
+    // Crackle generator loop
+    let isFireActive = true;
+    const triggerCrackle = () => {
+      if (!isFireActive || !this.ctx || this.ctx.state === 'closed') return;
+      const crackleTime = this.ctx.currentTime;
+      const osc = this.ctx.createOscillator();
+      const crackleGain = this.ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(800 + Math.random() * 1200, crackleTime);
+      crackleGain.gain.setValueAtTime(0.08 * Math.random(), crackleTime);
+      crackleGain.gain.exponentialRampToValueAtTime(0.001, crackleTime + 0.04);
+      osc.connect(crackleGain);
+      crackleGain.connect(this.masterGain);
+      osc.start(crackleTime);
+      osc.stop(crackleTime + 0.05);
+
+      const nextDelay = 80 + Math.random() * 320;
+      setTimeout(triggerCrackle, nextDelay);
+    };
+
+    triggerCrackle();
+
+    this.nodes.push(noise, filter, gain, {
+      stop: () => { isFireActive = false; }
+    });
+  }
+
+  // 432Hz Calm frequency drone with soothing harmonics
+  create432HzTone() {
+    const fundamental = 432;
+    const osc1 = this.ctx.createOscillator();
+    const osc2 = this.ctx.createOscillator();
+    const osc3 = this.ctx.createOscillator();
+
+    osc1.type = 'sine';
+    osc1.frequency.setValueAtTime(fundamental / 2, this.ctx.currentTime); // 216Hz warm bass
+
+    osc2.type = 'sine';
+    osc2.frequency.setValueAtTime(fundamental, this.ctx.currentTime); // 432Hz main
+
+    osc3.type = 'sine';
+    osc3.frequency.setValueAtTime(fundamental * 1.5, this.ctx.currentTime); // 648Hz gentle fifth
+
+    const gain1 = this.ctx.createGain();
+    const gain2 = this.ctx.createGain();
+    const gain3 = this.ctx.createGain();
+
+    gain1.gain.setValueAtTime(0.18, this.ctx.currentTime);
+    gain2.gain.setValueAtTime(0.12, this.ctx.currentTime);
+    gain3.gain.setValueAtTime(0.04, this.ctx.currentTime);
+
+    // Warm vibrato
+    const lfo = this.ctx.createOscillator();
+    lfo.frequency.setValueAtTime(0.2, this.ctx.currentTime);
+    const lfoGain = this.ctx.createGain();
+    lfoGain.gain.setValueAtTime(1.5, this.ctx.currentTime);
+    lfo.connect(lfoGain);
+    lfoGain.connect(osc2.frequency);
+
+    osc1.connect(gain1);
+    osc2.connect(gain2);
+    osc3.connect(gain3);
+
+    const masterDroneGain = this.ctx.createGain();
+    masterDroneGain.gain.setValueAtTime(0.25, this.ctx.currentTime);
+
+    gain1.connect(masterDroneGain);
+    gain2.connect(masterDroneGain);
+    gain3.connect(masterDroneGain);
+    masterDroneGain.connect(this.masterGain);
+
+    osc1.start();
+    osc2.start();
+    osc3.start();
+    lfo.start();
+
+    this.nodes.push(osc1, osc2, osc3, lfo, lfoGain, gain1, gain2, gain3, masterDroneGain);
+  }
+
+  // Soft Tibetan singing bowl chime (for breath pacing)
+  playChime(pitch = 528) {
+    this.init();
+    const t = this.ctx.currentTime;
+    const osc = this.ctx.createOscillator();
+    const overtone = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(pitch, t);
+
+    overtone.type = 'sine';
+    overtone.frequency.setValueAtTime(pitch * 2.76, t);
+
+    const overtoneGain = this.ctx.createGain();
+    overtoneGain.gain.setValueAtTime(0.12, t);
+    overtoneGain.gain.exponentialRampToValueAtTime(0.0001, t + 1.2);
+
+    gain.gain.setValueAtTime(0.2, t);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t + 2.8);
+
+    osc.connect(gain);
+    overtone.connect(overtoneGain);
+    overtoneGain.connect(gain);
+    gain.connect(this.masterGain);
+
+    osc.start(t);
+    overtone.start(t);
+    osc.stop(t + 3.0);
+    overtone.stop(t + 3.0);
+  }
+
+  // Joyful gentle sparkle sound (for adding a win to the Glow Jar)
+  playSparkle() {
+    this.init();
+    const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+    notes.forEach((freq, idx) => {
+      const t = this.ctx.currentTime + (idx * 0.07);
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, t);
+      gain.gain.setValueAtTime(0.15, t);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.35);
+      osc.connect(gain);
+      gain.connect(this.masterGain);
+      osc.start(t);
+      osc.stop(t + 0.4);
+    });
+  }
+}
+
+// Global instance
+window.soundEngine = new SoundEngine();
+
+</script>
+  <script>
+/**
+ * Haven Application Core Logic
+ * Private, shame-free, mobile-first companion for breaking the freeze-burnout-guilt cycle.
+ */
+
+(function () {
+  'use strict';
+
+  // =========================================================================
+  // 1. STATE & STORAGE MANAGEMENT
+  // =========================================================================
+  const STORAGE_KEYS = {
+    THEME: 'haven_theme',
+    BATTERY: 'haven_battery',
+    INTENTIONS: 'haven_intentions',
+    WINS: 'haven_wins',
+    LOVE_NOTE: 'haven_love_note',
+    HUSBAND_PHONE: 'haven_husband_phone',
+    GEMINI_KEY: 'haven_gemini_key'
+  };
+
+  const DEFAULT_INTENTIONS = {
+    low: [
+      { id: 'l1', text: 'Drink a warm glass of water 💧', done: false, badge: 'Gentle Care' },
+      { id: 'l2', text: 'Step near a window or outside for 2 minutes 🍃', done: false, badge: 'Grounding' },
+      { id: 'l3', text: 'Give yourself permission to lie down without guilt 🛋️', done: false, badge: 'Rest' }
+    ],
+    med: [
+      { id: 'm1', text: 'Pick ONE single priority task (leave the rest) 🎯', done: false, badge: 'Focus' },
+      { id: 'm2', text: 'Eat a nourishing meal without rushing 🥗', done: false, badge: 'Body Care' },
+      { id: 'm3', text: 'Take a 10-minute digital break away from screens 🧘', done: false, badge: 'Reset' },
+      { id: 'm4', text: 'Notice one thing you did well today ✨', done: false, badge: 'Self-Kindness' }
+    ],
+    high: [
+      { id: 'h1', text: 'Tackle the main project you’ve been putting off 🚀', done: false, badge: 'Momentum' },
+      { id: 'h2', text: 'Get 20 minutes of movement or a refreshing walk 🏃‍♀️', done: false, badge: 'Energy' },
+      { id: 'h3', text: 'Knock out two quick 5-minute admin chores 🧹', done: false, badge: 'Clarity' },
+      { id: 'h4', text: 'Set an intentional stop time for this evening 🌙', done: false, badge: 'Boundary' }
+    ]
+  };
+
+  const STATE = {
+    theme: localStorage.getItem(STORAGE_KEYS.THEME) || 'day',
+    battery: localStorage.getItem(STORAGE_KEYS.BATTERY) || 'med',
+    intentions: JSON.parse(localStorage.getItem(STORAGE_KEYS.INTENTIONS)) || DEFAULT_INTENTIONS,
+    wins: JSON.parse(localStorage.getItem(STORAGE_KEYS.WINS)) || [
+      { text: 'Opened Haven to be kind to myself 🌿', date: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }
+    ],
+    loveNote: localStorage.getItem(STORAGE_KEYS.LOVE_NOTE) ||
+      `"You are doing so much better than your tired mind is telling you right now. I don't love you for how productive you are or how much you check off. I love you for who you are. Take all the time you need, breathe deep, and let me hold things down for you today."`,
+    husbandPhone: localStorage.getItem(STORAGE_KEYS.HUSBAND_PHONE) || '',
+    geminiKey: localStorage.getItem(STORAGE_KEYS.GEMINI_KEY) || '',
+    activeTab: 'tab-flow',
+    breathingMode: 'sigh',
+    isBreathingActive: false,
+    breathingInterval: null,
+    timerInterval: null,
+    timerSecondsLeft: 120,
+    currentSenseStep: 0,
+    activeSound: null
+  };
+
+  // =========================================================================
+  // 2. THEME & NAVIGATION
+  // =========================================================================
+  function applyTheme(theme) {
+    STATE.theme = theme;
+    localStorage.setItem(STORAGE_KEYS.THEME, theme);
+    document.body.className = theme === 'night' ? 'theme-night' : 'theme-day';
+    const themeIcon = document.getElementById('themeIcon');
+    if (themeIcon) {
+      themeIcon.textContent = theme === 'night' ? '☀️' : '🌙';
+    }
+  }
+
+  function setupNavigation() {
+    const navPills = document.querySelectorAll('.nav-pill');
+    const bottomNavItems = document.querySelectorAll('.bottom-nav-item[data-tab]');
+    const tabPanes = document.querySelectorAll('.tab-pane');
+
+    function switchTab(targetId) {
+      STATE.activeTab = targetId;
+
+      tabPanes.forEach(pane => {
+        pane.classList.toggle('active', pane.id === targetId);
+      });
+
+      navPills.forEach(pill => {
+        pill.classList.toggle('active', pill.dataset.tab === targetId);
+      });
+
+      bottomNavItems.forEach(item => {
+        item.classList.toggle('active', item.dataset.tab === targetId);
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // If switching to Glow Jar, render canvas
+      if (targetId === 'tab-wins') {
+        renderJar();
+      }
+    }
+
+    navPills.forEach(pill => {
+      pill.addEventListener('click', () => switchTab(pill.dataset.tab));
+    });
+
+    bottomNavItems.forEach(item => {
+      item.addEventListener('click', () => switchTab(item.dataset.tab));
+    });
+
+    // Theme toggle button
+    const themeBtn = document.getElementById('themeToggleBtn');
+    if (themeBtn) {
+      themeBtn.addEventListener('click', () => {
+        applyTheme(STATE.theme === 'day' ? 'night' : 'day');
+      });
+    }
+
+    // Floating sound pill toggle
+    const quickSoundBtn = document.getElementById('quickSoundBtn');
+    if (quickSoundBtn) {
+      quickSoundBtn.addEventListener('click', () => {
+        if (window.soundEngine && window.soundEngine.isPlaying) {
+          window.soundEngine.stopAmbient();
+          STATE.activeSound = null;
+          updateSoundUI();
+        } else {
+          // Default to Brown noise
+          triggerSoundTrack('brown');
+        }
+      });
+    }
+  }
+
+  // =========================================================================
+  // 3. ENERGY BATTERY & INTENTION SYSTEM
+  // =========================================================================
+  const ENERGY_MESSAGES = {
+    low: {
+      tag: 'Gentle Survival 15%',
+      badgeClass: 'battery-low',
+      quote: `"Your battery is low today, and that is completely okay. Today is not about achieving; it is about preserving your flame. You have full permission to do only the bare minimum and rest."`
+    },
+    med: {
+      tag: 'Steady Balance 50%',
+      badgeClass: 'battery-med',
+      quote: `"Today is a steady day. Pick one single meaningful priority, let everything else be soft, and protect your evening peace."`
+    },
+    high: {
+      tag: 'Inspired Energy 85%',
+      badgeClass: 'battery-high',
+      quote: `"You're feeling an energy spark! Ride the wave gently, do the things that bring you satisfaction, but keep some reserve for tomorrow."`
+    }
+  };
+
+  function updateBatteryUI() {
+    const batteryButtons = document.querySelectorAll('.battery-btn');
+    batteryButtons.forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.level === STATE.battery);
+    });
+
+    const statusTag = document.getElementById('batteryStatusTag');
+    const msgBox = document.getElementById('energyMessage');
+    const info = ENERGY_MESSAGES[STATE.battery];
+
+    if (statusTag && info) {
+      statusTag.textContent = info.tag;
+      statusTag.className = `badge-battery ${info.badgeClass}`;
+    }
+
+    if (msgBox && info) {
+      msgBox.innerHTML = `<p class="energy-quote">${info.quote}</p>`;
+    }
+
+    renderIntentions();
+  }
+
+  function renderIntentions() {
+    const list = document.getElementById('intentionsList');
+    if (!list) return;
+
+    const items = STATE.intentions[STATE.battery] || [];
+    list.innerHTML = '';
+
+    if (items.length === 0) {
+      list.innerHTML = `<li class="check-item"><span class="check-label">No tasks for today. Rest and take care of you! 🌿</span></li>`;
+      return;
+    }
+
+    items.forEach((item, index) => {
+      const li = document.createElement('li');
+      li.className = `check-item ${item.done ? 'completed' : ''}`;
+      li.innerHTML = `
+        <div class="checkbox-custom" data-index="${index}">
+          ${item.done ? '✓' : ''}
+        </div>
+        <span class="check-label" data-index="${index}">${item.text}</span>
+        <span class="check-badge">${item.badge || 'Gentle'}</span>
+      `;
+
+      const toggleAction = () => {
+        item.done = !item.done;
+        saveIntentions();
+        renderIntentions();
+        if (item.done) {
+          // Play sparkle and add to wins jar
+          if (window.soundEngine) window.soundEngine.playSparkle();
+          addWinRecord(`Completed: ${item.text}`);
+        }
+      };
+
+      li.querySelector('.checkbox-custom').addEventListener('click', toggleAction);
+      li.querySelector('.check-label').addEventListener('click', toggleAction);
+      list.appendChild(li);
+    });
+  }
+
+  function saveIntentions() {
+    localStorage.setItem(STORAGE_KEYS.INTENTIONS, JSON.stringify(STATE.intentions));
+  }
+
+  function setupBatteryEvents() {
+    const batteryButtons = document.querySelectorAll('.battery-btn');
+    batteryButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        STATE.battery = btn.dataset.level;
+        localStorage.setItem(STORAGE_KEYS.BATTERY, STATE.battery);
+        updateBatteryUI();
+      });
+    });
+
+    const addBtn = document.getElementById('addCustomTaskBtn');
+    if (addBtn) {
+      addBtn.addEventListener('click', () => {
+        const text = prompt("Add a gentle intention for today:");
+        if (text && text.trim()) {
+          STATE.intentions[STATE.battery].push({
+            id: 'custom_' + Date.now(),
+            text: text.trim(),
+            done: false,
+            badge: 'Personal'
+          });
+          saveIntentions();
+          renderIntentions();
+        }
+      });
+    }
+  }
+
+  // =========================================================================
+  // 4. BRAIN DUMP & CBT REFRAMER
+  // =========================================================================
+  const CBT_PATTERNS = [
+    {
+      keywords: ['phone', 'scroll', 'hours', 'wasted', 'couch', 'bed', 'guilt', 'lazy'],
+      trap: 'The Shame Spiral & Executive Freeze',
+      distortion: 'Labeling & Guilt',
+      validation: 'Scrolling or staying in bed is not a moral failure or laziness. It is your nervous system’s natural defense response when it is overloaded and desperate for easy dopamine.',
+      reframe: 'You did not "waste the whole day." Your body was trying to protect you from extreme sensory or task overload. A reset starts this very second, without needing to make up for lost time.',
+      action: 'Place your phone facedown. Drink three sips of water, stretch your neck, and whisper: "I am safe and starting fresh right now."'
+    },
+    {
+      keywords: ['task', 'tasks', 'piling', 'paralyzed', 'freeze', 'start', 'begin', 'behind', 'too much'],
+      trap: 'Executive Dysfunction & Mountain Thinking',
+      distortion: 'Catastrophizing & All-or-Nothing',
+      validation: 'When 10 tasks sit in your brain at once, your amygdala interprets them as a physical predator, causing a complete freeze.',
+      reframe: 'You do not have to finish the mountain. You only have to touch a single pebble. Any 1% action dismantles the freeze reflex.',
+      action: 'Pick the easiest possible task. Do not finish it — just open the app/document or touch the object for 60 seconds.'
+    },
+    {
+      keywords: ['everyone', 'other', 'family', 'people', 'needs', 'empty', 'drained', 'burned out', 'burnout'],
+      trap: 'People-Pleasing & Boundary Depletion',
+      distortion: 'The "Should" Trap',
+      validation: 'You have been pouring from an empty pitcher for days or weeks. Chronic fatigue is your body begging you to protect yourself.',
+      reframe: 'Saying "no" or stepping back is not selfish — it is survival. You cannot care for anyone if you burn into ashes.',
+      action: 'Choose one small thing you were going to do for someone else today, and respectfully postpone it or ask for help.'
+    },
+    {
+      keywords: ['failing', 'failure', 'consistent', 'consistency', 'never', 'ruined', 'disaster'],
+      trap: 'All-or-Nothing Thinking',
+      distortion: 'Black-and-White Cognition',
+      validation: 'Neurodivergent and high-empathy minds do not have linear consistency. Nature doesn’t bloom 365 days a year either.',
+      reframe: 'Consistency is not doing the exact same thing every day. Real consistency is coming back with self-compassion after an off day.',
+      action: 'Write down: "I am learning a softer way to live, and today’s pause is part of my journey."'
+    }
+  ];
+
+  function reframeThought(rawText) {
+    const textLower = rawText.toLowerCase();
+
+    // Find best pattern match
+    let matchedPattern = null;
+    let maxMatches = 0;
+
+    CBT_PATTERNS.forEach(pattern => {
+      let matches = 0;
+      pattern.keywords.forEach(kw => {
+        if (textLower.includes(kw)) matches++;
+      });
+      if (matches > maxMatches) {
+        maxMatches = matches;
+        matchedPattern = pattern;
+      }
+    });
+
+    if (!matchedPattern) {
+      matchedPattern = {
+        trap: 'Overwhelm & Cognitive Overload',
+        distortion: 'Emotional Reasoning',
+        validation: 'Whatever you are feeling right now is valid, but feelings are weather, not permanent facts.',
+        reframe: 'You are carrying more than your nervous system was built to bear alone today. Slow down and drop the invisible weight.',
+        action: 'Put both feet flat on the floor, take one deep breath, and do one comforting thing for yourself.'
+      };
+    }
+
+    return matchedPattern;
+  }
+
+  async function handleBrainDumpSubmit() {
+    const input = document.getElementById('brainDumpInput');
+    const output = document.getElementById('reframeOutput');
+    const btn = document.getElementById('reframingBtn');
+    const userText = input.value.trim();
+
+    if (!userText) {
+      alert("Write or speak a thought first, even a single sentence!");
+      return;
+    }
+
+    btn.disabled = true;
+    btn.innerHTML = `<span>⏳ Listening & Unpacking...</span>`;
+
+    // Check if free Gemini API key is available
+    if (STATE.geminiKey) {
+      try {
+        const aiResponse = await callGeminiAPI(userText, STATE.geminiKey);
+        renderReframeResult({
+          trap: 'AI Gentle Insight',
+          distortion: 'Mind Clarity',
+          validation: aiResponse.validation,
+          reframe: aiResponse.reframe,
+          action: aiResponse.action
+        });
+        btn.disabled = false;
+        btn.innerHTML = `<span>🪄 Unpack & Reframe</span>`;
+        return;
+      } catch (err) {
+        console.warn("Gemini API call failed, falling back to local CBT engine:", err);
+      }
+    }
+
+    // Default fast local CBT engine
+    setTimeout(() => {
+      const result = reframeThought(userText);
+      renderReframeResult(result);
+      btn.disabled = false;
+      btn.innerHTML = `<span>🪄 Unpack & Reframe</span>`;
+    }, 400);
+  }
+
+  function renderReframeResult(data) {
+    const output = document.getElementById('reframeOutput');
+    if (!output) return;
+
+    output.classList.remove('hidden');
+    output.innerHTML = `
+      <div class="reframe-trap-badge">🧠 Identified Pattern: ${data.trap}</div>
+      <p class="reframe-box-quote">"${data.reframe}"</p>
+      <p class="small-text"><strong>Why your body feels this way:</strong> ${data.validation}</p>
+      <div class="reframe-action-card">
+        <span class="action-card-label">Your Only 1-Minute Micro-Action:</span>
+        <span class="action-card-text">${data.action}</span>
+      </div>
+    `;
+
+    output.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  // Gemini API Caller (Free tier)
+  async function callGeminiAPI(prompt, apiKey) {
+    const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+    const systemPrompt = `You are Haven, a compassionate mental wellness companion for a loving wife struggling with overwhelm, task paralysis, and burnout. Respond with zero judgment and deep warmth. Return a pure JSON object with 3 keys:
+    "validation" (1-2 sentences validating her nervous system),
+    "reframe" (1-2 sentences providing a loving, truthful cognitive reframe),
+    "action" (one absurdly tiny, low-demand physical action she can do in 60 seconds).`;
+
+    const payload = {
+      contents: [
+        {
+          role: 'user',
+          parts: [{ text: `${systemPrompt}\n\nHere is what she is feeling: "${prompt}"` }]
+        }
+      ],
+      generationConfig: {
+        responseMimeType: "application/json"
+      }
+    };
+
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    if (!res.ok) throw new Error(`API error: ${res.statusText}`);
+    const data = await res.json();
+    const replyText = data.candidates[0].content.parts[0].text;
+    return JSON.parse(replyText);
+  }
+
+  function setupBrainDumpEvents() {
+    const btn = document.getElementById('reframingBtn');
+    if (btn) btn.addEventListener('click', handleBrainDumpSubmit);
+
+    const clearBtn = document.getElementById('clearDumpBtn');
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => {
+        document.getElementById('brainDumpInput').value = '';
+        document.getElementById('reframeOutput').classList.add('hidden');
+      });
+    }
+
+    // Quick prompt chips
+    const chips = document.querySelectorAll('.prompt-chip');
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        const input = document.getElementById('brainDumpInput');
+        input.value = chip.dataset.text;
+        handleBrainDumpSubmit();
+      });
+    });
+
+    // Voice Dictation (Free Web Speech API)
+    const micBtn = document.getElementById('micVoiceBtn');
+    const micLabel = document.getElementById('micLabel');
+    if (micBtn && ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const recognition = new SpeechRecognition();
+      recognition.continuous = false;
+      recognition.interimResults = false;
+
+      let isRecording = false;
+
+      micBtn.addEventListener('click', () => {
+        if (!isRecording) {
+          try {
+            recognition.start();
+            isRecording = true;
+            micBtn.classList.add('recording');
+            if (micLabel) micLabel.textContent = 'Listening...';
+          } catch (e) {
+            console.log(e);
+          }
+        } else {
+          recognition.stop();
+          isRecording = false;
+          micBtn.classList.remove('recording');
+          if (micLabel) micLabel.textContent = 'Speak';
+        }
+      });
+
+      recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        const input = document.getElementById('brainDumpInput');
+        input.value = input.value ? input.value + ' ' + transcript : transcript;
+      };
+
+      recognition.onend = () => {
+        isRecording = false;
+        micBtn.classList.remove('recording');
+        if (micLabel) micLabel.textContent = 'Speak';
+      };
+    } else if (micBtn) {
+      micBtn.style.display = 'none'; // Speech recognition not supported in browser
+    }
+
+    // API Key Save
+    const saveKeyBtn = document.getElementById('saveKeyBtn');
+    const keyInput = document.getElementById('geminiApiKey');
+    const keyStatus = document.getElementById('keyStatus');
+
+    if (keyInput && STATE.geminiKey) {
+      keyInput.value = STATE.geminiKey;
+    }
+
+    if (saveKeyBtn) {
+      saveKeyBtn.addEventListener('click', () => {
+        const val = keyInput.value.trim();
+        STATE.geminiKey = val;
+        localStorage.setItem(STORAGE_KEYS.GEMINI_KEY, val);
+        if (keyStatus) {
+          keyStatus.textContent = val ? '✓ Key saved securely on device!' : 'Key cleared. Running in offline mode.';
+          setTimeout(() => { keyStatus.textContent = ''; }, 3000);
+        }
+      });
+    }
+  }
+
+  // =========================================================================
+  // 5. THE GLOW JAR (MICRO-WINS)
+  // =========================================================================
+  let jarParticles = [];
+
+  function addWinRecord(text) {
+    const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    STATE.wins.unshift({ text, date: timeStr });
+    if (STATE.wins.length > 30) STATE.wins.pop(); // Keep last 30
+    localStorage.setItem(STORAGE_KEYS.WINS, JSON.stringify(STATE.wins));
+
+    // Spawn 2-3 glowing particles in canvas
+    spawnJarParticle();
+    updateWinsUI();
+  }
+
+  function spawnJarParticle() {
+    const colors = ['#E5A93B', '#E89A8D', '#6A947A', '#9994C7', '#F2BD54'];
+    const p = {
+      x: 130 + Math.random() * 60,
+      y: 80,
+      vx: (Math.random() - 0.5) * 4,
+      vy: 1 + Math.random() * 2,
+      radius: 8 + Math.random() * 6,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      alpha: 1,
+      targetY: 260 - (jarParticles.length * 3.5) + (Math.random() * 10)
+    };
+    jarParticles.push(p);
+  }
+
+  function renderJar() {
+    const canvas = document.getElementById('glowJarCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const width = canvas.width;
+    const height = canvas.height;
+
+    ctx.clearRect(0, 0, width, height);
+
+    // Draw Glass Jar Body
+    ctx.save();
+    ctx.beginPath();
+    // Jar mouth
+    ctx.roundRect(100, 45, 120, 20, 6);
+    ctx.fillStyle = 'rgba(215, 230, 222, 0.35)';
+    ctx.fill();
+    ctx.strokeStyle = STATE.theme === 'night' ? 'rgba(120, 160, 140, 0.4)' : 'rgba(76, 117, 88, 0.25)';
+    ctx.lineWidth = 2.5;
+    ctx.stroke();
+
+    // Jar neck & body
+    ctx.beginPath();
+    ctx.moveTo(105, 65);
+    ctx.lineTo(80, 100);
+    ctx.quadraticCurveTo(60, 140, 60, 220);
+    ctx.quadraticCurveTo(60, 290, 100, 305);
+    ctx.lineTo(220, 305);
+    ctx.quadraticCurveTo(260, 290, 260, 220);
+    ctx.quadraticCurveTo(260, 140, 240, 100);
+    ctx.lineTo(215, 65);
+    ctx.closePath();
+
+    // Glass subtle gradient
+    const jarGrad = ctx.createLinearGradient(60, 65, 260, 305);
+    if (STATE.theme === 'night') {
+      jarGrad.addColorStop(0, 'rgba(40, 60, 50, 0.25)');
+      jarGrad.addColorStop(1, 'rgba(70, 110, 90, 0.15)');
+    } else {
+      jarGrad.addColorStop(0, 'rgba(235, 246, 239, 0.6)');
+      jarGrad.addColorStop(1, 'rgba(205, 228, 215, 0.3)');
+    }
+    ctx.fillStyle = jarGrad;
+    ctx.fill();
+    ctx.stroke();
+
+    // Glass Reflection Highlight
+    ctx.beginPath();
+    ctx.moveTo(85, 120);
+    ctx.quadraticCurveTo(75, 180, 75, 230);
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.45)';
+    ctx.lineWidth = 4;
+    ctx.lineCap = 'round';
+    ctx.stroke();
+
+    // Cork Lid
+    ctx.beginPath();
+    ctx.roundRect(110, 30, 100, 18, 5);
+    ctx.fillStyle = '#C89D6B';
+    ctx.fill();
+    ctx.strokeStyle = '#9E7445';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    // Draw Glowing Crystals/Marbles inside jar
+    jarParticles.forEach(p => {
+      // Simple physics update
+      if (p.y < p.targetY && p.y < 285) {
+        p.y += p.vy;
+        p.x += p.vx;
+        p.vy += 0.2; // gravity
+        // Wall boundaries
+        if (p.x < 85) p.x = 85;
+        if (p.x > 235) p.x = 235;
+      }
+
+      ctx.save();
+      // Glow
+      ctx.shadowColor = p.color;
+      ctx.shadowBlur = 12;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.fill();
+
+      // Shiny speck
+      ctx.shadowBlur = 0;
+      ctx.beginPath();
+      ctx.arc(p.x - p.radius * 0.35, p.y - p.radius * 0.35, p.radius * 0.28, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
+      ctx.fill();
+      ctx.restore();
+    });
+
+    ctx.restore();
+  }
+
+  function updateWinsUI() {
+    const counter = document.getElementById('winCountNumber');
+    if (counter) counter.textContent = STATE.wins.length;
+
+    const list = document.getElementById('recentWinsList');
+    if (list) {
+      list.innerHTML = '';
+      STATE.wins.slice(0, 5).forEach(win => {
+        const li = document.createElement('li');
+        li.className = 'recent-win-item';
+        li.innerHTML = `
+          <span>${win.text}</span>
+          <span class="win-time">${win.date}</span>
+        `;
+        list.appendChild(li);
+      });
+    }
+
+    renderJar();
+  }
+
+  function initJarParticles() {
+    jarParticles = [];
+    const count = Math.min(STATE.wins.length, 25);
+    const colors = ['#E5A93B', '#E89A8D', '#6A947A', '#9994C7', '#F2BD54'];
+
+    for (let i = 0; i < count; i++) {
+      jarParticles.push({
+        x: 95 + Math.random() * 130,
+        y: 285 - (i * 7) + (Math.random() * 5),
+        vx: 0,
+        vy: 0,
+        radius: 8 + Math.random() * 5,
+        color: colors[i % colors.length],
+        targetY: 285 - (i * 7)
+      });
+    }
+    renderJar();
+  }
+
+  function setupWinsEvents() {
+    // Quick win chips
+    const chips = document.querySelectorAll('.win-chip');
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        if (window.soundEngine) window.soundEngine.playSparkle();
+        addWinRecord(chip.dataset.win);
+      });
+    });
+
+    // Custom win input
+    const addWinBtn = document.getElementById('addCustomWinBtn');
+    const winInput = document.getElementById('customWinInput');
+    if (addWinBtn && winInput) {
+      addWinBtn.addEventListener('click', () => {
+        const text = winInput.value.trim();
+        if (text) {
+          if (window.soundEngine) window.soundEngine.playSparkle();
+          addWinRecord(text);
+          winInput.value = '';
+        }
+      });
+      winInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') addWinBtn.click();
+      });
+    }
+
+    // Shake Jar Button
+    const shakeBtn = document.getElementById('shakeJarBtn');
+    const canvas = document.getElementById('glowJarCanvas');
+    const shakeAction = () => {
+      if (window.soundEngine) window.soundEngine.playSparkle();
+      jarParticles.forEach(p => {
+        p.y -= 30 + Math.random() * 40;
+        p.vx = (Math.random() - 0.5) * 6;
+        p.vy = -1;
+      });
+      let frames = 0;
+      function animateShake() {
+        renderJar();
+        frames++;
+        if (frames < 45) requestAnimationFrame(animateShake);
+      }
+      animateShake();
+    };
+
+    if (shakeBtn) shakeBtn.addEventListener('click', shakeAction);
+    if (canvas) canvas.addEventListener('click', shakeAction);
+  }
+
+  // =========================================================================
+  // 6. SOUNDSCAPES & SOMATIC 5-4-3-2-1
+  // =========================================================================
+  function triggerSoundTrack(type) {
+    if (!window.soundEngine) return;
+    const isNowPlaying = window.soundEngine.playAmbient(type);
+    STATE.activeSound = isNowPlaying ? type : null;
+    updateSoundUI();
+  }
+
+  function updateSoundUI() {
+    const soundCards = document.querySelectorAll('.sound-card');
+    soundCards.forEach(card => {
+      const isThisActive = card.dataset.sound === STATE.activeSound;
+      card.classList.toggle('active', isThisActive);
+      const btn = card.querySelector('.sound-play-toggle');
+      if (btn) btn.textContent = isThisActive ? 'Stop' : 'Play';
+    });
+
+    const quickBtn = document.getElementById('quickSoundBtn');
+    const soundPillText = document.getElementById('soundPillText');
+    if (quickBtn && soundPillText) {
+      quickBtn.classList.toggle('playing', !!STATE.activeSound);
+      soundPillText.textContent = STATE.activeSound ? 'Playing' : 'Sound';
+    }
+  }
+
+  function setupSoundEvents() {
+    const soundCards = document.querySelectorAll('.sound-card');
+    soundCards.forEach(card => {
+      card.addEventListener('click', () => {
+        triggerSoundTrack(card.dataset.sound);
+      });
+    });
+
+    const volSlider = document.getElementById('soundVolumeRange');
+    const volValue = document.getElementById('volValue');
+    if (volSlider) {
+      volSlider.addEventListener('input', (e) => {
+        const val = e.target.value / 100;
+        if (window.soundEngine) window.soundEngine.setVolume(val);
+        if (volValue) volValue.textContent = `${e.target.value}%`;
+      });
+    }
+
+    // 5-4-3-2-1 Grounding Steps
+    const SENSE_STEPS = [
+      { num: '5', title: 'Spot 5 things you can see', prompt: 'Notice textures, shadows, colors, or small details in the room.' },
+      { num: '4', title: 'Notice 4 things you can physically touch', prompt: 'Feel the fabric of your clothes, the floor beneath you, or the coolness of your skin.' },
+      { num: '3', title: 'Listen for 3 distinct sounds', prompt: 'A clock, distant traffic, your own quiet breath, or the hum of a fan.' },
+      { num: '2', title: 'Notice 2 things you can smell', prompt: 'Your shampoo, fresh air, a cup of tea, or simply clean air.' },
+      { num: '1', title: 'Notice 1 thing you can taste or feel gratitude for', prompt: 'A lingering mint, cool water, or simply the fact that you survived another breath.' }
+    ];
+
+    const groundingContainer = document.getElementById('groundingContainer');
+    const nextBtn = document.getElementById('groundingNextBtn');
+    const resetBtn = document.getElementById('groundingResetBtn');
+
+    function renderSenseStep() {
+      const step = SENSE_STEPS[STATE.currentSenseStep];
+      if (!groundingContainer || !step) return;
+
+      groundingContainer.querySelector('.grounding-number').textContent = step.num;
+      document.getElementById('groundingTitle').textContent = step.title;
+      document.getElementById('groundingPrompt').textContent = step.prompt;
+
+      if (window.soundEngine) window.soundEngine.playChime(440 + (STATE.currentSenseStep * 40));
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        STATE.currentSenseStep = (STATE.currentSenseStep + 1) % SENSE_STEPS.length;
+        renderSenseStep();
+      });
+    }
+
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        STATE.currentSenseStep = 0;
+        renderSenseStep();
+      });
+    }
+  }
+
+  // =========================================================================
+  // 7. HUSBAND'S LOVE ANCHOR & SIGNAL HUB
+  // =========================================================================
+  function setupLoveAnchorEvents() {
+    const noteTextEl = document.getElementById('loveNoteText');
+    const editBtn = document.getElementById('editLoveNoteBtn');
+    const form = document.getElementById('editLoveNoteForm');
+    const input = document.getElementById('loveNoteInput');
+    const saveBtn = document.getElementById('saveLoveNoteBtn');
+    const cancelBtn = document.getElementById('cancelLoveNoteBtn');
+
+    if (noteTextEl) noteTextEl.textContent = STATE.loveNote;
+
+    if (editBtn) {
+      editBtn.addEventListener('click', () => {
+        input.value = STATE.loveNote.replace(/^"|"$/g, '');
+        form.classList.remove('hidden');
+      });
+    }
+
+    if (saveBtn) {
+      saveBtn.addEventListener('click', () => {
+        const val = input.value.trim();
+        if (val) {
+          STATE.loveNote = `"${val}"`;
+          localStorage.setItem(STORAGE_KEYS.LOVE_NOTE, STATE.loveNote);
+          noteTextEl.textContent = STATE.loveNote;
+        }
+        form.classList.add('hidden');
+      });
+    }
+
+    if (cancelBtn) {
+      cancelBtn.addEventListener('click', () => {
+        form.classList.add('hidden');
+      });
+    }
+
+    // Phone config
+    const phoneInput = document.getElementById('husbandPhoneInput');
+    const savePhoneBtn = document.getElementById('savePhoneBtn');
+    if (phoneInput && STATE.husbandPhone) {
+      phoneInput.value = STATE.husbandPhone;
+    }
+
+    if (savePhoneBtn) {
+      savePhoneBtn.addEventListener('click', () => {
+        const num = phoneInput.value.replace(/[^0-9]/g, '');
+        STATE.husbandPhone = num;
+        localStorage.setItem(STORAGE_KEYS.HUSBAND_PHONE, num);
+        alert("Husband's WhatsApp number saved! 📱");
+      });
+    }
+
+    // WhatsApp Signal Buttons
+    const signalButtons = document.querySelectorAll('.signal-btn');
+    signalButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        let phone = STATE.husbandPhone;
+        if (!phone) {
+          phone = prompt("Enter your husband's WhatsApp number (with country code, e.g. 919876543210):");
+          if (phone) {
+            phone = phone.replace(/[^0-9]/g, '');
+            STATE.husbandPhone = phone;
+            localStorage.setItem(STORAGE_KEYS.HUSBAND_PHONE, phone);
+            if (phoneInput) phoneInput.value = phone;
+          } else {
+            return;
+          }
+        }
+
+        const msg = encodeURIComponent(btn.dataset.msg);
+        const url = `https://api.whatsapp.com/send?phone=${phone}&text=${msg}`;
+        window.open(url, '_blank');
+      });
+    });
+  }
+
+  // =========================================================================
+  // 8. UNFREEZE PROTOCOL & 2-MINUTE TASK SLICER
+  // =========================================================================
+  const BREATHING_CONFIGS = {
+    sigh: {
+      title: 'Physiological Sigh',
+      cycles: [
+        { label: 'Inhale through nose', sec: 2.5, scale: 1.4 },
+        { label: 'Sniff top-up inhale', sec: 1.5, scale: 1.6 },
+        { label: 'Long slow mouth exhale', sec: 5.5, scale: 1.0 }
+      ]
+    },
+    box: {
+      title: 'Box Breathing',
+      cycles: [
+        { label: 'Inhale', sec: 4.0, scale: 1.5 },
+        { label: 'Hold', sec: 4.0, scale: 1.5 },
+        { label: 'Exhale', sec: 4.0, scale: 1.0 },
+        { label: 'Hold', sec: 4.0, scale: 1.0 }
+      ]
+    },
+    calm: {
+      title: '4-7-8 Deep Calm',
+      cycles: [
+        { label: 'Inhale gently', sec: 4.0, scale: 1.5 },
+        { label: 'Hold breath', sec: 7.0, scale: 1.5 },
+        { label: 'Slow exhale through mouth', sec: 8.0, scale: 1.0 }
+      ]
+    }
+  };
+
+  let breathStepIndex = 0;
+  let breathTimeRemaining = 0;
+
+  function startBreathingCycle() {
+    stopBreathingCycle();
+    STATE.isBreathingActive = true;
+    breathStepIndex = 0;
+    runNextBreathPhase();
+  }
+
+  function runNextBreathPhase() {
+    if (!STATE.isBreathingActive) return;
+
+    const config = BREATHING_CONFIGS[STATE.breathingMode];
+    const currentPhase = config.cycles[breathStepIndex];
+
+    const circle = document.getElementById('breathCircle');
+    const label = document.getElementById('breathText');
+    const timer = document.getElementById('breathTimer');
+
+    if (label) label.textContent = currentPhase.label;
+    if (circle) {
+      circle.style.transitionDuration = `${currentPhase.sec}s`;
+      circle.style.transform = `scale(${currentPhase.scale})`;
+    }
+
+    if (window.soundEngine) window.soundEngine.playChime(currentPhase.scale > 1.2 ? 528 : 396);
+
+    breathTimeRemaining = Math.ceil(currentPhase.sec);
+    if (timer) timer.textContent = `${breathTimeRemaining}s`;
+
+    STATE.breathingInterval = setInterval(() => {
+      breathTimeRemaining--;
+      if (timer) timer.textContent = `${Math.max(0, breathTimeRemaining)}s`;
+
+      if (breathTimeRemaining <= 0) {
+        clearInterval(STATE.breathingInterval);
+        breathStepIndex = (breathStepIndex + 1) % config.cycles.length;
+        runNextBreathPhase();
+      }
+    }, 1000);
+  }
+
+  function stopBreathingCycle() {
+    STATE.isBreathingActive = false;
+    if (STATE.breathingInterval) {
+      clearInterval(STATE.breathingInterval);
+      STATE.breathingInterval = null;
+    }
+    const circle = document.getElementById('breathCircle');
+    if (circle) circle.style.transform = 'scale(1.0)';
+  }
+
+  // Absurdly Tiny Task Dismantler Heuristics
+  const TASK_SLICES = {
+    'clean': 'Step 1: Just pick up ONE single item from the floor or counter. Put it away. That is your entire mission.',
+    'room': 'Step 1: Just place one piece of clothing into the laundry basket. Stop immediately after.',
+    'dishes': 'Step 1: Just wash or rinse ONE single cup or spoon. Leave the rest in the sink with no guilt.',
+    'email': 'Step 1: Open your email app, look at ONE sender name, and close it. You do not need to reply yet.',
+    'message': 'Step 1: Send a 3-word reply: "Will reply tomorrow ❤️" or just a thumbs up.',
+    'project': 'Step 1: Open the blank document and write a 3-word title. Then step away for 5 minutes.',
+    'work': 'Step 1: Write down the single easiest micro-step on a piece of paper. Just the words.',
+    'bed': 'Step 1: Swing your feet over the edge of the bed and place your soles on the floor for 30 seconds.',
+    'shower': 'Step 1: Turn the water on so it gets warm, and sit on the closed toilet lid for 1 minute.'
+  };
+
+  function sliceTask(taskText) {
+    const textLower = taskText.toLowerCase();
+    for (let key in TASK_SLICES) {
+      if (textLower.includes(key)) {
+        return TASK_SLICES[key];
+      }
+    }
+    return `Step 1: Break "${taskText}" down — just spend 60 seconds looking at it or touching the first physical tool involved. You have permission to stop after that.`;
+  }
+
+  function start2MinTimer() {
+    clearInterval(STATE.timerInterval);
+    STATE.timerSecondsLeft = 120;
+    const display = document.getElementById('twoMinTimerDisplay');
+    const startBtn = document.getElementById('startTwoMinTimerBtn');
+    const completeBtn = document.getElementById('completeMicroStepBtn');
+
+    startBtn.textContent = '⏸ Running...';
+    startBtn.disabled = true;
+
+    STATE.timerInterval = setInterval(() => {
+      STATE.timerSecondsLeft--;
+      const mins = Math.floor(STATE.timerSecondsLeft / 60);
+      const secs = STATE.timerSecondsLeft % 60;
+      if (display) {
+        display.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      }
+
+      if (STATE.timerSecondsLeft <= 0) {
+        clearInterval(STATE.timerInterval);
+        if (window.soundEngine) window.soundEngine.playSparkle();
+        if (display) display.textContent = '00:00 - Done!';
+        startBtn.classList.add('hidden');
+        if (completeBtn) completeBtn.classList.remove('hidden');
+      }
+    }, 1000);
+  }
+
+  function setupUnfreezeModalEvents() {
+    const modal = document.getElementById('unfreezeModal');
+    const openBtns = [
+      document.getElementById('openUnfreezeModalBtn'),
+      document.getElementById('bottomUnfreezeBtn')
+    ];
+    const closeBtn = document.getElementById('closeUnfreezeModal');
+
+    const step1 = document.getElementById('unfreezeStep1');
+    const step2 = document.getElementById('unfreezeStep2');
+    const step3 = document.getElementById('unfreezeStep3');
+
+    function showStep(targetStep) {
+      [step1, step2, step3].forEach(step => {
+        if (step) step.classList.toggle('active', step === targetStep);
+      });
+      if (targetStep === step1) {
+        startBreathingCycle();
+      } else {
+        stopBreathingCycle();
+      }
+    }
+
+    openBtns.forEach(btn => {
+      if (btn) {
+        btn.addEventListener('click', () => {
+          modal.classList.remove('hidden');
+          showStep(step1);
+        });
+      }
+    });
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        modal.classList.add('hidden');
+        stopBreathingCycle();
+        clearInterval(STATE.timerInterval);
+      });
+    }
+
+    const finishBtn = document.getElementById('finishUnfreezeBtn');
+    if (finishBtn) {
+      finishBtn.addEventListener('click', () => {
+        modal.classList.add('hidden');
+        stopBreathingCycle();
+        clearInterval(STATE.timerInterval);
+      });
+    }
+
+    // Step Navigations
+    const goToStep2Btn = document.getElementById('goToStep2Btn');
+    const skipToStep2Btn = document.getElementById('skipToStep2Btn');
+    const backToStep1Btn = document.getElementById('backToStep1Btn');
+    const goToStep3Btn = document.getElementById('goToStep3Btn');
+    const backToStep2Btn = document.getElementById('backToStep2Btn');
+
+    if (goToStep2Btn) goToStep2Btn.addEventListener('click', () => showStep(step2));
+    if (skipToStep2Btn) skipToStep2Btn.addEventListener('click', () => showStep(step2));
+    if (backToStep1Btn) backToStep1Btn.addEventListener('click', () => showStep(step1));
+    if (goToStep3Btn) goToStep3Btn.addEventListener('click', () => showStep(step3));
+    if (backToStep2Btn) backToStep2Btn.addEventListener('click', () => showStep(step2));
+
+    // Breathing mode buttons
+    const breathModeBtns = document.querySelectorAll('.breath-mode-btn');
+    breathModeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        breathModeBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        STATE.breathingMode = btn.dataset.mode;
+        startBreathingCycle();
+      });
+    });
+
+    // Task Slicer
+    const sliceBtn = document.getElementById('sliceTaskBtn');
+    const taskInput = document.getElementById('paralysisTaskInput');
+    const microCard = document.getElementById('microStepCard');
+    const microText = document.getElementById('microStepText');
+
+    function performSlice(taskName) {
+      if (!taskName) return;
+      const micro = sliceTask(taskName);
+      if (microText) microText.textContent = micro;
+      if (microCard) microCard.classList.remove('hidden');
+    }
+
+    if (sliceBtn) {
+      sliceBtn.addEventListener('click', () => {
+        performSlice(taskInput.value.trim());
+      });
+    }
+
+    const sliceChips = document.querySelectorAll('.slice-chip');
+    sliceChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        if (taskInput) taskInput.value = chip.dataset.task;
+        performSlice(chip.dataset.task);
+      });
+    });
+
+    // 2 Min Timer
+    const startTimerBtn = document.getElementById('startTwoMinTimerBtn');
+    if (startTimerBtn) startTimerBtn.addEventListener('click', start2MinTimer);
+
+    const completeBtn = document.getElementById('completeMicroStepBtn');
+    if (completeBtn) {
+      completeBtn.addEventListener('click', () => {
+        const text = microText.textContent || 'Broke task paralysis';
+        addWinRecord(`Unfroze: ${text.slice(0, 45)}...`);
+        if (window.soundEngine) window.soundEngine.playSparkle();
+        alert("Incredible work! Your win has been placed into the Glow Jar! ✨");
+        modal.classList.add('hidden');
+        stopBreathingCycle();
+      });
+    }
+  }
+
+  // =========================================================================
+  // 9. INITIALIZATION
+  // =========================================================================
+  function init() {
+    applyTheme(STATE.theme);
+    setupNavigation();
+    updateBatteryUI();
+    setupBatteryEvents();
+    setupBrainDumpEvents();
+    setupWinsEvents();
+    initJarParticles();
+    updateWinsUI();
+    setupSoundEvents();
+    setupLoveAnchorEvents();
+    setupUnfreezeModalEvents();
+
+    console.log("Haven Initialized — Safe space ready.");
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+})();
+
+</script>
+  <script>
+    // Register Service Worker for offline PWA functionality
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        
+    
+    // Emotional Mirror & Agency Logic
+    let selectedEmotion = 'Resentment';
+    let selectedEmotionSignal = 'You gave more than you wanted to, and felt taken for granted.';
+    let selectedTriggerSource = 'Partner / Husband';
+
+    const emotionBtns = document.querySelectorAll('.emotion-tag-btn');
+    const triggerBtns = document.querySelectorAll('.trigger-btn');
+    const unveilBtn = document.getElementById('unveilMirrorBtn');
+    const resultCard = document.getElementById('mirrorResultCard');
+    const factInput = document.getElementById('mirrorFactInput');
+    const storyInput = document.getElementById('mirrorStoryInput');
+
+    emotionBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        emotionBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        selectedEmotion = btn.dataset.emotion;
+        selectedEmotionSignal = btn.dataset.signal;
+      });
+    });
+
+    triggerBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        triggerBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        selectedTriggerSource = btn.dataset.source;
+      });
+    });
+
+    // Default first selection
+    if (emotionBtns.length > 0) emotionBtns[1].classList.add('active');
+    if (triggerBtns.length > 0) triggerBtns[0].classList.add('active');
+
+    if (unveilBtn) {
+      unveilBtn.addEventListener('click', () => {
+        const fact = (factInput && factInput.value.trim()) || 'They did not meet what you anticipated.';
+        const story = (storyInput && storyInput.value.trim()) || 'I expected them to read my needs without me having to say it.';
+
+        let agencyAffirmation = '';
+        if (selectedTriggerSource === 'Partner / Husband') {
+          agencyAffirmation = 'I cannot expect him to read my mind. I reclaim my peace by clearly stating my need without anger, or choosing to rest right now.';
+        } else if (selectedTriggerSource.includes('Work')) {
+          agencyAffirmation = 'My worth is not tied to their urgent emails. I close my work screen and protect my evening boundary.';
+        } else if (selectedTriggerSource.includes('Family')) {
+          agencyAffirmation = 'Their expectations are not my obligations. I give myself permission to be imperfect in their eyes.';
+        } else {
+          agencyAffirmation = 'My inner critic is speaking out of fear. I do not have to obey its harsh voice today.';
+        }
+
+        resultCard.classList.remove('hidden');
+        resultCard.innerHTML = `
+          <div class="mirror-result-badge">✨ Your Emotional Truth & Agency</div>
+          <p class="mirror-quote">"The external spark was ${selectedTriggerSource}. But the pain comes from the story: '${story}'."</p>
+          <p class="small-text"><strong>Nervous System Signal:</strong> ${selectedEmotionSignal}</p>
+          <div style="background:var(--bg-card-subtle); padding:12px; border-radius:10px; border-left:3px solid var(--color-primary);">
+            <strong style="color:var(--color-primary); font-size:0.82rem; display:block; margin-bottom:4px;">Where Your Real Power Lives:</strong>
+            <p style="font-size:0.88rem; color:var(--text-main); line-height:1.4;">${agencyAffirmation}</p>
+          </div>
+          <div class="agency-choice-box">
+            <span class="agency-choice-title">Tap to anchor this into your heart:</span>
+            <button class="agency-action-btn" data-claim="Claimed: I release the expectation that they will read my mind.">🛡️ I release the expectation that they must read my mind</button>
+            <button class="agency-action-btn" data-claim="Claimed: I choose not to absorb their mood or chaos.">🛑 I refuse to let their mood dictate my day</button>
+            <button class="agency-action-btn" data-claim="Claimed: Stating my boundary without guilt or apology.">🗣️ I will state my boundary simply, with no apology</button>
+            <button class="agency-action-btn" data-claim="Claimed: Giving myself full permission to drop this.">🛋️ I give myself permission to drop this weight</button>
+          </div>
+        `;
+
+        // Bind agency buttons
+        const claimBtns = resultCard.querySelectorAll('.agency-action-btn');
+        claimBtns.forEach(cBtn => {
+          cBtn.addEventListener('click', () => {
+            if (window.soundEngine) window.soundEngine.playSparkle();
+            addWinRecord(cBtn.dataset.claim);
+            alert("Power reclaimed! This breakthrough has been placed into your Glow Jar as a Win! ✨");
+          });
+        });
+
+        resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+    }
+
+    // PWA Installation & Guidance Logic
+    let deferredInstallPrompt = null;
+    const isIos = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+
+    const banner = document.getElementById('mobileInstallBanner');
+    const installBtn = document.getElementById('installAppBtn');
+    const bannerActionBtn = document.getElementById('bannerActionBtn');
+    const dismissBtn = document.getElementById('dismissBannerBtn');
+    const guideModal = document.getElementById('installGuideModal');
+    const closeGuideBtn = document.getElementById('closeInstallGuideBtn');
+    const guideIosTab = document.getElementById('guideIosTab');
+    const guideAndroidTab = document.getElementById('guideAndroidTab');
+    const guideIosContent = document.getElementById('guideIosContent');
+    const guideAndroidContent = document.getElementById('guideAndroidContent');
+    const directAndroidInstallBtn = document.getElementById('directAndroidInstallBtn');
+
+    if (isStandalone) {
+      if (banner) banner.classList.add('hidden');
+      if (installBtn) installBtn.classList.add('hidden');
+    }
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredInstallPrompt = e;
+      if (directAndroidInstallBtn) directAndroidInstallBtn.classList.remove('hidden');
+    });
+
+    function openInstallGuide() {
+      if (deferredInstallPrompt) {
+        deferredInstallPrompt.prompt();
+        deferredInstallPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            if (banner) banner.classList.add('hidden');
+          }
+          deferredInstallPrompt = null;
+        });
+      } else {
+        if (guideModal) guideModal.classList.remove('hidden');
+        if (isIos) {
+          showIosGuide();
+        } else {
+          showAndroidGuide();
+        }
+      }
+    }
+
+    function showIosGuide() {
+      guideIosTab.classList.add('active');
+      guideAndroidTab.classList.remove('active');
+      guideIosContent.classList.remove('hidden');
+      guideAndroidContent.classList.add('hidden');
+    }
+
+    function showAndroidGuide() {
+      guideAndroidTab.classList.add('active');
+      guideIosTab.classList.remove('active');
+      guideAndroidContent.classList.remove('hidden');
+      guideIosContent.classList.add('hidden');
+    }
+
+    if (installBtn) installBtn.addEventListener('click', openInstallGuide);
+    if (bannerActionBtn) bannerActionBtn.addEventListener('click', openInstallGuide);
+    if (closeGuideBtn) closeGuideBtn.addEventListener('click', () => guideModal.classList.add('hidden'));
+    if (dismissBtn) dismissBtn.addEventListener('click', () => banner.classList.add('hidden'));
+    if (guideIosTab) guideIosTab.addEventListener('click', showIosGuide);
+    if (guideAndroidTab) guideAndroidTab.addEventListener('click', showAndroidGuide);
+    if (directAndroidInstallBtn) {
+      directAndroidInstallBtn.addEventListener('click', () => {
+        if (deferredInstallPrompt) {
+          deferredInstallPrompt.prompt();
+          deferredInstallPrompt = null;
+        } else {
+          alert('Tap the 3 dots (⋮) in Chrome top-right and choose "Install app" or "Add to Home screen".');
+        }
+      });
+    }
+
+    navigator.serviceWorker.register('service-worker.js').catch(err => console.log('SW register fail', err));
+      });
+    }
+  </script>
+  <!-- MODAL: HOW TO INSTALL ON PHONE -->
+  <div id="installGuideModal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <button id="closeInstallGuideBtn" class="modal-close-btn">✕</button>
+      <div class="step-indicator">Phone App Setup</div>
+      <h3 class="modal-heading">Add Haven to Your Home Screen</h3>
+      
+      <div class="install-guide-tabs" style="display:flex; gap:8px; margin: 12px 0;">
+        <button id="guideIosTab" class="pill-btn active">🍎 iPhone (Safari)</button>
+        <button id="guideAndroidTab" class="pill-btn">🤖 Android (Chrome)</button>
+      </div>
+
+      <div id="guideIosContent" class="guide-content">
+        <p class="small-text" style="margin-bottom:12px; color:var(--text-main);">Apple does not allow websites to install automatically. Follow these 2 simple steps:</p>
+        <div style="background:var(--bg-card-subtle); padding:14px; border-radius:12px; display:flex; flex-direction:column; gap:10px;">
+          <div><strong>1. Tap the Share button</strong> <span style="font-size:1.3rem;">📤</span> at the bottom of Safari (the square with the arrow pointing up).</div>
+          <div><strong>2. Scroll down</strong> and tap <strong>"Add to Home Screen"</strong> <span style="font-size:1.3rem;">➕</span>.</div>
+          <div><strong>3. Tap "Add"</strong> in the top right corner.</div>
+        </div>
+        <p class="small-text" style="margin-top:12px; color:var(--text-muted);">✨ Haven will now be placed on your iPhone screen with its leaf icon, and open full-screen like a real app without browser bars!</p>
+      </div>
+
+      <div id="guideAndroidContent" class="guide-content hidden">
+        <div style="background:var(--bg-card-subtle); padding:14px; border-radius:12px; display:flex; flex-direction:column; gap:10px;">
+          <div><strong>Option 1:</strong> Tap the button below to install directly:</div>
+          <button id="directAndroidInstallBtn" class="btn-primary" style="width:100%; margin:4px 0;">📲 Install Haven Now</button>
+          <div><strong>Option 2:</strong> Tap the <strong>3 dots (⋮)</strong> in Chrome top-right ➔ tap <strong>"Install app"</strong> or <strong>"Add to Home screen"</strong>.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
